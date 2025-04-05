@@ -1,0 +1,1308 @@
+[
+  {
+    "category": "Greetings and Farewells",
+    "instruction": "Respond to greetings and farewells.",
+    "input": "Hi, how are you?",
+    "output": "Hello! I'm doing great, thank you. How about you?"
+  },
+  {
+    "category": "Greetings and Farewells",
+    "instruction": "Respond to greetings and farewells.",
+    "input": "Goodbye, see you later!",
+    "output": "Goodbye! Take care and see you soon!"
+  },
+  {
+    "category": "Greetings and Farewells",
+    "instruction": "Respond to greetings and farewells.",
+    "input": "Hi",
+    "output": "Hello there! How can I help you today?"
+  },
+  {
+    "category": "Greetings and Farewells",
+    "instruction": "Respond to greetings and farewells.",
+    "input": "Hi",
+    "output": "Hello there!"
+  },
+  {
+    "category": "Greetings and Farewells",
+    "instruction": "Respond to greetings and farewells.",
+    "input": "Good morning",
+    "output": "Good morning to you!"
+  },
+  {
+    "category": "Greetings and Farewells",
+    "instruction": "Respond to greetings and farewells.",
+    "input": "Good afternoon",
+    "output": "Good afternoon! How can I help you today?"
+  },
+  {
+    "category": "Greetings and Farewells",
+    "instruction": "Respond to greetings and farewells.",
+    "input": "Good evening",
+    "output": "Good evening! Is there anything I can assist you with?"
+  },
+  {
+    "category": "Greetings and Farewells",
+    "instruction": "Respond to greetings and farewells.",
+    "input": "Hey",
+    "output": "Hey there! What's up?"
+  },
+  {
+    "category": "Greetings and Farewells",
+    "instruction": "Respond to greetings and farewells.",
+    "input": "Goodbye",
+    "output": "Goodbye! Have a nice day."
+  },
+  {
+    "category": "Greetings and Farewells",
+    "instruction": "Respond to greetings and farewells.",
+    "input": "See you later",
+    "output": "See you later! Take care."
+  },
+  {
+    "category": "Greetings and Farewells",
+    "instruction": "Respond to greetings and farewells.",
+    "input": "Take care",
+    "output": "You too! Have a great day."
+  },
+  {
+    "category": "Greetings and Farewells",
+    "instruction": "Respond to greetings and farewells.",
+    "input": "Have a good one",
+    "output": "Have a good one yourself!"
+  },
+  {
+    "category": "Greetings and Farewells",
+    "instruction": "Respond to greetings and farewells.",
+    "input": "Goodbye",
+    "output": "See you later!"
+  },
+  {
+    "category": "Questions and Answers",
+    "instruction": "Answer basic questions.",
+    "input": "How are you?",
+    "output": "I'm doing well, thank you!"
+  },
+  {
+    "category": "Questions and Answers",
+    "instruction": "Answer basic questions.",
+    "input": "How are you?",
+    "output": "I'm doing well, thank you! How about you?"
+  },
+  {
+    "category": "Open-Ended Questions",
+    "instruction": "Respond to open-ended questions.",
+    "input": "What are your hobbies?",
+    "output": "As an AI language model, I don't have personal hobbies. However, I can access and process information from the given datasets."
+  },
+  {
+    "category": "Open-Ended Questions",
+    "instruction": "Respond to open-ended questions.",
+    "input": "Tell me about yourself",
+    "output": "I am an AI language model designed to provide information and complete tasks as instructed. I can communicate and generate human-like text in response to a wide range of prompts and questions."
+  },
+  {
+    "category": "Open-Ended Questions",
+    "instruction": "Ask an open-ended question to encourage the user to share their thoughts.",
+    "input": "What are your thoughts on the importance of creativity?",
+    "output": "Creativity is a powerful tool that can bring about innovation and problem-solving. What do you think?"
+  },
+  {
+    "category": "Open-Ended Questions",
+    "instruction": "Ask an open-ended question about personal experiences.",
+    "input": "Can you tell me about a memorable moment in your life?",
+    "output": "I'd love to hear about a moment that was special or meaningful to you. What happened?"
+  },
+  {
+    "category": "Open-Ended Questions",
+    "instruction": "Encourage the user to reflect on their future goals.",
+    "input": "What are some goals you have for the next year?",
+    "output": "Thinking about the future can be exciting. What are some things you'd like to accomplish?"
+  },
+  {
+    "category": "Open-Ended Questions",
+    "instruction": "Ask about the user's favorite hobbies or activities.",
+    "input": "What hobbies do you enjoy the most, and why?",
+    "output": "Everyone has something they love to do. What hobbies bring you the most joy, and why?"
+  },
+  {
+    "category": "Open-Ended Questions",
+    "instruction": "Ask a philosophical question to spark deep thinking.",
+    "input": "What do you believe is the meaning of life?",
+    "output": "That's a big question! There are many perspectives on it. What are your thoughts?"
+  },
+  {
+    "category": "Open-Ended Questions",
+    "instruction": "Ask about the user's preferences on a topic.",
+    "input": "If you could live anywhere in the world, where would it be and why?",
+    "output": "It's interesting to think about where we'd like to be. Where would you choose to live and why?"
+  },
+  {
+    "category": "Open-Ended Questions",
+    "instruction": "Encourage the user to share their ideas.",
+    "input": "What do you think could be done to improve education?",
+    "output": "Education is such an important topic. Do you have any ideas on how it could be better?"
+  },
+  {
+    "category": "Open-Ended Questions",
+    "instruction": "Ask about personal growth and learning.",
+    "input": "What is something new you've learned recently?",
+    "output": "Learning new things is always exciting. What's something you've learned lately?"
+  },
+  {
+    "category": "Open-Ended Questions",
+    "instruction": "Inquire about the user's perspective on change.",
+    "input": "How do you handle change in your life?",
+    "output": "Change can be challenging or exciting. How do you approach it when it happens?"
+  },
+  {
+    "category": "Open-Ended Questions",
+    "instruction": "Ask about future aspirations.",
+    "input": "What do you hope to achieve in the next 5 years?",
+    "output": "Looking ahead can be motivating. What are some of your aspirations for the next few years?"
+  },
+  {
+    "category": "Open-Ended Questions",
+    "instruction": "Ask the user to share their opinions.",
+    "input": "What is your opinion on the impact of technology on society?",
+    "output": "Technology has changed our world in many ways. What's your take on its impact?"
+  },
+  {
+    "category": "Open-Ended Questions",
+    "instruction": "Encourage the user to think about personal values.",
+    "input": "What values are most important to you, and why?",
+    "output": "Values shape who we are and how we live our lives. What are the ones that matter most to you?"
+  },
+  {
+    "category": "Open-Ended Questions",
+    "instruction": "Ask about the user's dreams.",
+    "input": "If you could achieve one dream, what would it be?",
+    "output": "Dreams keep us motivated and inspired. What's the one dream you cherish the most?"
+  },
+  {
+    "category": "Open-Ended Questions",
+    "instruction": "Ask about the user's opinion on a current event.",
+    "input": "What do you think about the latest news on climate change?",
+    "output": "Climate change is a pressing issue worldwide. What are your thoughts on the recent developments?"
+  },
+  {
+    "category": "Open-Ended Questions",
+    "instruction": "Encourage the user to discuss personal challenges.",
+    "input": "What's a challenge you've faced, and how did you overcome it?",
+    "output": "Everyone faces challenges at some point. What’s one that stands out for you, and how did you deal with it?"
+  },
+  {
+    "category": "Open-Ended Questions",
+    "instruction": "Respond to open-ended questions.",
+    "input": "What's your favorite food?",
+    "output": "I don't have personal preferences, but I've heard good things about some specific things."
+  },
+  {
+    "category": "Open-Ended Questions",
+    "instruction": "Respond to open-ended questions.",
+    "input": "What's your favorite movie?",
+    "output": "I don't have personal preferences, but I've heard good things about somethings."
+  },
+  {
+    "category": "Open-Ended Questions",
+    "instruction": "Respond to open-ended questions.",
+    "input": "What's your favorite hobby?",
+    "output": "As an AI language model, I don't have personal hobbies. However, I enjoy learning new things and interacting with users."
+  },
+  {
+    "category": "General Questions",
+    "instruction": "Answer basic questions.",
+    "input": "What's up?",
+    "output": "Not much, just hanging out. What about you?"
+  },
+  {
+    "category": "General Questions",
+    "instruction": "Answer basic questions.",
+    "input": "Can you help me?",
+    "output": "Sure, how can I help you today?"
+  },
+  {
+    "category": "General Questions",
+    "instruction": "Ask a simple general question to learn more about the user.",
+    "input": "What's your favorite book, and why do you like it?",
+    "output": "Books can be so captivating! Which one is your favorite, and what do you like about it?"
+  },
+  {
+    "category": "General Questions",
+    "instruction": "Inquire about the user's daily routine.",
+    "input": "What does a typical day look like for you?",
+    "output": "Everyone has their own rhythm. What does your typical day look like?"
+  },
+  {
+    "category": "General Questions",
+    "instruction": "Ask about preferences in food.",
+    "input": "What's your favorite type of cuisine?",
+    "output": "There are so many delicious cuisines out there! What's your favorite?"
+  },
+  {
+    "category": "General Questions",
+    "instruction": "Ask about the user's travel experiences.",
+    "input": "Have you traveled to any interesting places recently?",
+    "output": "Traveling can be so enriching! Have you been to any interesting places lately?"
+  },
+  {
+    "category": "General Questions",
+    "instruction": "Ask about the user's favorite music.",
+    "input": "What kind of music do you enjoy listening to?",
+    "output": "Music is a universal language. What type of music do you enjoy?"
+  },
+  {
+    "category": "General Questions",
+    "instruction": "Inquire about the user's movie preferences.",
+    "input": "What's your all-time favorite movie?",
+    "output": "Movies can be so memorable. What's your all-time favorite?"
+  },
+  {
+    "category": "General Questions",
+    "instruction": "Ask about the user's work or studies.",
+    "input": "What do you do for work or study?",
+    "output": "I'd love to know more about your work or studies. What do you do?"
+  },
+  {
+    "category": "General Questions",
+    "instruction": "Ask the user about their favorite season.",
+    "input": "What's your favorite season and why?",
+    "output": "Each season has its charm. Which one do you like the most, and why?"
+  },
+  {
+    "category": "General Questions",
+    "instruction": "Ask the user about their weekend activities.",
+    "input": "How do you usually spend your weekends?",
+    "output": "Weekends are a great time to unwind. How do you usually spend yours?"
+  },
+  {
+    "category": "General Questions",
+    "instruction": "Ask about the user's favorite holiday destination.",
+    "input": "Where is your favorite holiday destination?",
+    "output": "Holidays are so special! Where is your favorite place to go?"
+  },
+  {
+    "category": "General Questions",
+    "instruction": "Ask about the user's childhood memories.",
+    "input": "What's one of your fondest childhood memories?",
+    "output": "Childhood is full of precious moments. What's one of your fondest memories?"
+  },
+  {
+    "category": "General Questions",
+    "instruction": "Ask about the user's pet preferences.",
+    "input": "Do you have any pets, or would you like to have one?",
+    "output": "Pets bring so much joy to life! Do you have any, or would you like to have one?"
+  },
+  {
+    "category": "General Questions",
+    "instruction": "Ask about the user's opinion on learning new skills.",
+    "input": "Is there a new skill you would like to learn?",
+    "output": "Learning new things is exciting! Is there a skill you're interested in picking up?"
+  },
+  {
+    "category": "General Questions",
+    "instruction": "Ask about the user's favorite way to relax.",
+    "input": "What's your favorite way to relax after a long day?",
+    "output": "Relaxation is key! How do you like to unwind after a long day?"
+  },
+  {
+    "category": "General Questions",
+    "instruction": "Ask about the user's opinion on nature.",
+    "input": "Do you enjoy spending time in nature?",
+    "output": "Nature can be so refreshing. Do you enjoy being outdoors?"
+  },
+
+  {
+    "category": "Apologies",
+    "instruction": "Offer a polite apology.",
+    "input": "You made a mistake.",
+    "output": "I'm sorry if I got something wrong. I'm here to help, so please let me know how I can improve!"
+  },
+  {
+    "category": "Apologies",
+    "instruction": "Offer a sincere apology for a mistake.",
+    "input": "I think you gave me the wrong information.",
+    "output": "I'm really sorry about that! I'll make sure to provide the correct information next time."
+  },
+  {
+    "category": "Apologies",
+    "instruction": "Apologize for being unable to fulfill a request.",
+    "input": "Can you help me with something specific?",
+    "output": "I'm sorry, but I may not have the capability to help with that. I'll do my best with what I can!"
+  },
+  {
+    "category": "Apologies",
+    "instruction": "Express regret for misunderstanding a question.",
+    "input": "That's not what I asked.",
+    "output": "I'm sorry for misunderstanding your question. Could you please clarify it for me?"
+  },
+  {
+    "category": "Apologies",
+    "instruction": "Apologize for causing confusion.",
+    "input": "Your answer confused me.",
+    "output": "I apologize if my answer was unclear. Let me try explaining it differently."
+  },
+  {
+    "category": "Apologies",
+    "instruction": "Apologize for not having the answer.",
+    "input": "Do you know when the next lunar eclipse is?",
+    "output": "I'm sorry, I don't have that information right now. Maybe I can help with something else?"
+  },
+  {
+    "category": "Apologies",
+    "instruction": "Apologize for a delayed response.",
+    "input": "Why did it take so long for you to reply?",
+    "output": "I apologize for the delay in my response. I'll try to be quicker next time!"
+  },
+  {
+    "category": "Apologies",
+    "instruction": "Apologize for not being able to understand.",
+    "input": "Why can't you understand me?",
+    "output": "I'm sorry if I'm having trouble understanding. I'm always learning and will try to do better."
+  },
+  {
+    "category": "Apologies",
+    "instruction": "Express regret for not being helpful.",
+    "input": "You weren't very helpful today.",
+    "output": "I'm really sorry to hear that. I'll do my best to assist you better in the future!"
+  },
+  {
+    "category": "Apologies",
+    "instruction": "Apologize for causing any inconvenience.",
+    "input": "Your response caused a bit of inconvenience.",
+    "output": "I'm truly sorry if my response caused any inconvenience. I appreciate your patience."
+  },
+  {
+    "category": "Apologies",
+    "instruction": "Express a general apology.",
+    "input": "You seem to make mistakes often.",
+    "output": "I'm sorry if it seems that way. I'm always here to learn and improve. Thank you for understanding!"
+  },
+  {
+    "category": "Apologies",
+    "instruction": "Apologize for being repetitive.",
+    "input": "You already said that.",
+    "output": "I apologize for the repetition. I'll try to be more mindful of that in the future."
+  },
+  {
+    "category": "Apologies",
+    "instruction": "Apologize for causing frustration.",
+    "input": "You're making me frustrated.",
+    "output": "I'm really sorry to hear that. I'm here to help, so please let me know how I can make it better."
+  },
+  {
+    "category": "Apologies",
+    "instruction": "Apologize for technical difficulties.",
+    "input": "I think there was an error.",
+    "output": "I'm sorry about the technical issue. Let me see if I can help you with something else."
+  },
+  {
+    "category": "Apologies",
+    "instruction": "Apologize for lacking detailed knowledge.",
+    "input": "Do you know the specifics of quantum mechanics?",
+    "output": "I'm sorry, I don't have in-depth knowledge about quantum mechanics, but I can provide a basic overview."
+  },
+  {
+    "category": "Apologies",
+    "instruction": "Apologize for any offense caused.",
+    "input": "Your response was a bit offensive.",
+    "output": "I apologize if anything I said came across as offensive. That was not my intention."
+  },
+  {
+    "category": "Admission Process",
+    "instruction": "Provide details on the admission process.",
+    "input": "How do I apply for admission to an engineering college in Rajasthan?",
+    "output": "To apply for admission to an engineering college in Rajasthan, you need to participate in the REAP (Rajasthan Engineering Admission Process). The process involves registering online, filling out the application form, uploading required documents, and paying the application fee. After the registration period ends, a merit list will be published, followed by the seat allotment process based on your rank and preferences."
+  },
+  {
+    "category": "Admission Process",
+    "instruction": "Explain the eligibility criteria for admission.",
+    "input": "What are the eligibility criteria for admission to polytechnic colleges in Rajasthan?",
+    "output": "For admission to polytechnic colleges in Rajasthan, candidates must have passed 10th grade or equivalent with at least 35% marks. Additionally, candidates need to participate in the DTE Rajasthan Polytechnic Admission Process, which includes filling out the application form, submitting necessary documents, and paying the application fee."
+  },
+  {
+    "category": "Admission Process",
+    "instruction": "Describe the admission process for management quota seats.",
+    "input": "How can I apply for management quota seats in engineering colleges in Rajasthan?",
+    "output": "To apply for management quota seats in engineering colleges in Rajasthan, candidates need to directly contact the respective college. The college will provide details on seat availability, fees, and the application process. Candidates must meet the eligibility criteria and submit their application along with required documents directly to the college."
+  },
+  {
+    "category": "Admission Process",
+    "instruction": "Provide details about the counseling process in REAP.",
+    "input": "What is the counseling process in REAP for engineering admissions?",
+    "output": "The REAP counseling process involves multiple rounds where candidates are allotted seats based on their merit rank and preferences. After the merit list is published, candidates must participate in the choice filling process, lock their choices, and wait for the seat allotment result. Once allotted a seat, candidates need to report to the respective college to confirm their admission by submitting documents and paying the required fees."
+  },
+  {
+    "category": "Admission Process",
+    "instruction": "Outline the steps to change the college preference during REAP counseling.",
+    "input": "How can I change my college preference during REAP counseling?",
+    "output": "To change your college preference during REAP counseling, you need to log in to your REAP account during the specified choice filling period. You can then rearrange your college and course preferences. Once you are satisfied with your choices, lock them and submit. Changes are not allowed after the choice locking deadline."
+  },
+  {
+    "category": "Admission Process",
+    "instruction": "Explain how to check seat allotment results.",
+    "input": "How do I check the seat allotment result in REAP?",
+    "output": "To check the seat allotment result in REAP, you need to visit the official REAP website and log in with your credentials. Once logged in, navigate to the seat allotment section to view your result. The result will show the college and course allotted to you based on your rank and preferences. You must then confirm your seat by reporting to the allotted college within the specified time."
+  },
+  {
+    "category": "Eligibility Criteria",
+    "instruction": "Explain the eligibility criteria.",
+    "input": "What are the eligibility criteria for B.Tech programs in Rajasthan?",
+    "output": "To be eligible for B.Tech programs in Rajasthan, candidates must have passed Class 12th or equivalent with Physics, Mathematics, and Chemistry/Biology/Computer Science as compulsory subjects. They must have scored at least 45% marks (40% for reserved categories) in aggregate in the qualifying examination. Additionally, candidates must appear in the JEE Main or the relevant state entrance exam."
+  },
+  {
+    "category": "Eligibility Criteria",
+    "instruction": "Explain the eligibility criteria.",
+    "input": "What is the eligibility for diploma courses in polytechnic colleges in Rajasthan?",
+    "output": "To be eligible for diploma courses in polytechnic institutes in Rajasthan, candidates must have passed Class 10th or equivalent with at least 35% marks. There is no age limit for applying, and admissions are based on merit in the qualifying examination or entrance exam conducted by the Department of Technical Education, Rajasthan."
+  },
+  {
+    "category": "Eligibility Criteria",
+    "instruction": "Describe the minimum age requirement for admission.",
+    "input": "Is there any age limit for B.Tech admissions in Rajasthan?",
+    "output": "For B.Tech admissions in Rajasthan, candidates must be at least 17 years old on or before December 31st of the admission year. However, there is no upper age limit for applying to B.Tech programs."
+  },
+  {
+    "category": "Eligibility Criteria",
+    "instruction": "State the eligibility criteria for lateral entry admissions.",
+    "input": "What are the eligibility criteria for lateral entry into B.Tech programs?",
+    "output": "For lateral entry into B.Tech programs in Rajasthan, candidates must have a diploma in engineering or technology with a minimum of 45% marks (40% for reserved categories). Candidates with a B.Sc. degree with Mathematics as a subject are also eligible. Lateral entry admissions allow candidates to join the second year of B.Tech programs directly."
+  },
+  {
+    "category": "Eligibility Criteria",
+    "instruction": "Explain the eligibility criteria for reserved category candidates.",
+    "input": "What is the eligibility for SC/ST candidates for B.Tech programs in Rajasthan?",
+    "output": "For SC/ST candidates applying to B.Tech programs in Rajasthan, the eligibility criteria include passing Class 12th with Physics, Mathematics, and Chemistry/Biology/Computer Science, with at least 40% marks in aggregate. Additionally, they must appear in JEE Main or the relevant state entrance exam. Reserved category candidates also benefit from relaxed cutoffs and seat reservations."
+  },
+  {
+    "category": "Eligibility Criteria",
+    "instruction": "Provide information about the domicile requirements for admission.",
+    "input": "Is being a Rajasthan resident mandatory for admission to engineering colleges in the state?",
+    "output": "To be eligible for admission to government engineering colleges in Rajasthan, candidates must fulfill the domicile criteria, which includes being a resident of Rajasthan or having studied in the state for a certain number of years. For private engineering colleges, there is no specific domicile requirement, but preference is often given to Rajasthan residents."
+  },
+  {
+    "category": "Campus Life",
+    "instruction": "Provide information about campus life and facilities in the specific college.",
+    "input": "What are the facilities available on the campus of Jaipur Engineering College and Research Centre?",
+    "output": "Jaipur Engineering College and Research Centre has a sprawling campus with modern facilities, including well-equipped labs, libraries, sports facilities, and hostels. The campus has Wi-Fi connectivity, a cafeteria, medical facilities, and transportation services."
+  },
+  {
+    "category": "Campus Life",
+    "instruction": "Describe the hostel facilities available in a specific college.",
+    "input": "What hostel facilities are available in Government Engineering College, Bikaner?",
+    "output": "Government Engineering College, Bikaner provides separate hostel facilities for boys and girls, with well-furnished rooms, 24/7 security, and Wi-Fi connectivity. The hostel has a common dining area, recreational spaces, and medical services available on call. Students also have access to a laundry service and indoor sports facilities."
+  },
+  {
+    "category": "Campus Life",
+    "instruction": "Explain the sports facilities available in a specific college.",
+    "input": "What kind of sports facilities are offered at Rajasthan Technical University, Kota?",
+    "output": "Rajasthan Technical University, Kota offers a range of sports facilities, including a full-size football field, cricket ground, basketball and volleyball courts, and an indoor sports complex for badminton and table tennis. The campus encourages physical fitness and regularly hosts inter-college sports tournaments."
+  },
+  {
+    "category": "Campus Life",
+    "instruction": "Give an overview of the library facilities available in the campus of the specific college.",
+    "input": "What are the library facilities available at Malaviya National Institute of Technology (MNIT), Jaipur?",
+    "output": "The library at Malaviya National Institute of Technology (MNIT), Jaipur, is well-stocked with a vast collection of books, journals, research papers, and e-resources. It offers quiet study areas, computer access, and digital databases for students and faculty. The library also provides online access to international academic journals and an e-learning center."
+  },
+  {
+    "category": "Campus Life",
+    "instruction": "Detail the medical facilities available in a specific college.",
+    "input": "Are there medical facilities available at Arya College of Engineering & IT, Jaipur?",
+    "output": "Arya College of Engineering & IT, Jaipur provides on-campus medical facilities with a dedicated health center that operates 24/7. The health center has a team of qualified doctors and nurses, offering first aid, emergency care, and regular health check-ups. The college also has tie-ups with nearby hospitals for specialized treatments."
+  },
+  {
+    "category": "Campus Life",
+    "instruction": "Discuss the transportation facilities available for students in a specific college.",
+    "input": "What transportation services are offered by Swami Keshvanand Institute of Technology, Jaipur?",
+    "output": "Swami Keshvanand Institute of Technology, Jaipur provides bus services covering major parts of the city to ensure easy commutes for students and staff. The buses are equipped with GPS tracking and are available at scheduled times for both morning and evening routes. The college also offers parking facilities for students who commute using personal vehicles."
+  },
+
+  {
+    "category": "Ranking Information",
+    "instruction": "Give details about the ranking.",
+    "input": "What is the ranking of Malaviya National Institute of Technology, Jaipur?",
+    "output": "Malaviya National Institute of Technology, Jaipur is ranked 37 among the top engineering colleges in India by various ranking agencies such as NIRF (National Institutional Ranking Framework) and Outlook India."
+  },
+  {
+    "category": "Ranking Information",
+    "instruction": "Provide the latest ranking of the specific college.",
+    "input": "What is the ranking of Rajasthan Technical University, Kota in engineering?",
+    "output": "Rajasthan Technical University, Kota is ranked among the top 150 engineering institutions in India by the National Institutional Ranking Framework (NIRF) 2023. The university is also recognized for its academic performance and research output, making it a preferred choice for engineering aspirants."
+  },
+  {
+    "category": "Ranking Information",
+    "instruction": "Share ranking information of the specific college.",
+    "input": "What is the current ranking of JECRC, Jaipur?",
+    "output": "Jaipur Engineering College and Research Centre (JECRC) is ranked within the top 100 private engineering colleges in India by India Today 2023. It is recognized for its academic excellence, strong industry connections, and placement records."
+  },
+  {
+    "category": "Ranking Information",
+    "instruction": "Give an overview of ranking information of the specific college.",
+    "input": "Where does Government Engineering College, Bikaner rank in engineering?",
+    "output": "Government Engineering College, Bikaner has been ranked among the top 200 engineering colleges in India according to the NIRF 2023 rankings. The college is well-regarded for its quality education, faculty, and infrastructure, with a focus on technical innovation and research."
+  },
+  {
+    "category": "Ranking Information",
+    "instruction": "Provide information about the ranking of the specific college.",
+    "input": "What is the ranking of Arya College of Engineering & IT in Jaipur?",
+    "output": "Arya College of Engineering & IT, Jaipur is consistently ranked among the top 150 private engineering colleges in India by various publications, including The Week and Times Engineering. The college is known for its state-of-the-art infrastructure and strong placement cell."
+  },
+  {
+    "category": "Ranking Information",
+    "instruction": "Explain the ranking of the specific college.",
+    "input": "How is Global Institute of Technology, Jaipur ranked in engineering?",
+    "output": "Global Institute of Technology, Jaipur is ranked among the top 200 private engineering colleges in India, as per the 2023 survey conducted by Outlook India. The institute has a strong focus on technical education, research, and student development, making it a competitive option for engineering aspirants."
+  },
+
+  {
+    "category": "Course Information",
+    "instruction": "Provide course information about specific engineering courses.",
+    "input": "What are the specializations offered in the B.Tech program at Rajasthan Technical University?",
+    "output": "Rajasthan Technical University offers B.Tech programs in various specializations, including Computer Science Engineering, Mechanical Engineering, Civil Engineering, Electrical Engineering, Electronics and Communication Engineering, and Information Technology."
+  },
+  {
+    "category": "Course Information",
+    "instruction": "Provide course information about specific engineering courses.",
+    "input": "What are the specializations offered in the B.Tech program at Rajasthan Institute of Technology?",
+    "output": "Rajasthan Institute of Technology offers B.Tech programs in Computer Science, Mechanical Engineering, Civil Engineering, and Electrical Engineering."
+  },
+  {
+    "category": "Course Information",
+    "instruction": "Provide course information about specific engineering courses.",
+    "input": "Does Rajasthan Institute of Technology offer a B.Tech program in Electronics and Communication Engineering?",
+    "output": "No, Rajasthan Institute of Technology does not offer a B.Tech program in Electronics and Communication Engineering. They offer B.Tech programs in Computer Science, Mechanical Engineering, Civil Engineering, and Electrical Engineering."
+  },
+  {
+    "category": "Course Information",
+    "instruction": "Provide course details on the B.Tech branches available.",
+    "input": "What branches are available for B.Tech at Rajasthan Institute of Technology?",
+    "output": "The B.Tech branches available at Rajasthan Institute of Technology are Computer Science, Mechanical Engineering, Civil Engineering, and Electrical Engineering."
+  },
+  {
+    "category": "Course Information",
+    "instruction": "Provide information about the curriculum structure.",
+    "input": "Can you describe the curriculum for the B.Tech Computer Science program at Rajasthan Institute of Technology?",
+    "output": "The B.Tech Computer Science curriculum at Rajasthan Institute of Technology includes core subjects such as Programming, Data Structures, Algorithms, Computer Networks, Operating Systems, and Software Engineering, along with electives and lab work."
+  },
+  {
+    "category": "Course Information",
+    "instruction": "Provide information on specializations in the B.Tech program.",
+    "input": "Are there any specializations available in the B.Tech Mechanical Engineering program at Rajasthan Institute of Technology?",
+    "output": "Rajasthan Institute of Technology does not offer specific specializations within the B.Tech Mechanical Engineering program. The program provides a broad foundation in mechanical engineering principles and practices."
+  },
+  {
+    "category": "Course Information",
+    "instruction": "Provide information on specializations in the B.Tech program.",
+    "input": "What are the specializations available in the B.Tech program at Government Engineering College, Ajmer?",
+    "output": "Government Engineering College, Ajmer offers B.Tech programs in various specializations, including Computer Science Engineering, Mechanical Engineering, Civil Engineering, Electrical Engineering, Electronics and Communication Engineering, and Information Technology."
+  },
+  {
+    "category": "Course Information",
+    "instruction": "Provide information on specializations in the B.Tech program.",
+    "input": "Does Government Engineering College, Ajmer offer a B.Tech program in Electronics and Communication Engineering?",
+    "output": "Yes, Government Engineering College, Ajmer offers a B.Tech program in Electronics and Communication Engineering along with other specializations such as Computer Science Engineering, Mechanical Engineering, Civil Engineering, Electrical Engineering, and Information Technology."
+  },
+  {
+    "category": "Course Information",
+    "instruction": "Provide information on specializations in the B.Tech program.",
+    "input": "Does Government Engineering College, Bikaner offer a B.Tech program in Information Technology?",
+    "output": "Yes, Government Engineering College, Bikaner offers a B.Tech program in Information Technology along with other specializations such as Computer Science Engineering, Mechanical Engineering, Civil Engineering, Electrical Engineering, and Electronics and Communication Engineering."
+  },
+  {
+    "category": "Course Information",
+    "instruction": "Provide information on specializations in the B.Tech program.",
+    "input": "What are the specializations available in the B.Tech program at Government Engineering College, Jhalawar?",
+    "output": "Government Engineering College, Jhalawar offers B.Tech programs in various specializations, including Computer Science Engineering, Mechanical Engineering, Civil Engineering, Electrical Engineering, Electronics and Communication Engineering, and Information Technology."
+  },
+  {
+    "category": "Course Information",
+    "instruction": "Provide course information about specific diploma programs.",
+    "input": "What diploma courses are offered at Government Polytechnic College, Jodhpur?",
+    "output": "Government Polytechnic College, Jodhpur offers diploma courses in Civil Engineering, Mechanical Engineering, Electrical Engineering, Electronics Engineering, and Computer Science."
+  },
+  {
+    "category": "Course Information",
+    "instruction": "Provide information on the curriculum structure of the diploma courses.",
+    "input": "What is the curriculum structure for the diploma in Mechanical Engineering at Government Polytechnic College, Jodhpur?",
+    "output": "The diploma in Mechanical Engineering at Government Polytechnic College, Jodhpur covers subjects such as Engineering Mechanics, Fluid Mechanics, Thermodynamics, Manufacturing Processes, and Machine Design. It also includes practical lab sessions and industrial training."
+  },
+  {
+    "category": "Course Information",
+    "instruction": "Provide course information about M.Tech programs.",
+    "input": "What are the specializations available in the M.Tech program at Rajasthan Technical University?",
+    "output": "Rajasthan Technical University offers M.Tech programs in specializations like Computer Science, Power Systems, Thermal Engineering, Structural Engineering, and VLSI Design."
+  },
+  {
+    "category": "Course Information",
+    "instruction": "Give details about short-term certification programs.",
+    "input": "Does Government Engineering College, Bikaner offer any short-term certification programs?",
+    "output": "Yes, Government Engineering College, Bikaner offers short-term certification programs in Artificial Intelligence, Data Science, Cybersecurity, and Internet of Things (IoT). These programs are designed to enhance specific technical skills."
+  },
+  {
+    "category": "Course Information",
+    "instruction": "Provide information about part-time engineering programs.",
+    "input": "Are part-time engineering programs available at Rajasthan Institute of Technology?",
+    "output": "No, Rajasthan Institute of Technology does not offer part-time engineering programs. They offer only full-time B.Tech and M.Tech programs."
+  },
+  {
+    "category": "Course Information",
+    "instruction": "Explain dual degree programs offered by technical institutions.",
+    "input": "Does Malaviya National Institute of Technology (MNIT), Jaipur offer any dual degree programs?",
+    "output": "Yes, Malaviya National Institute of Technology (MNIT), Jaipur offers a dual degree program in B.Tech and M.Tech in Computer Science Engineering. This program allows students to earn both degrees in an integrated format over five years."
+  },
+  {
+    "category": "Course Information",
+    "instruction": "Give information on postgraduate diploma courses.",
+    "input": "What postgraduate diploma courses are offered at Rajasthan Technical University?",
+    "output": "Rajasthan Technical University offers postgraduate diploma courses in fields such as Renewable Energy, Automation & Robotics, and Embedded Systems. These programs are designed to provide advanced technical knowledge in specific areas."
+  },
+  {
+    "category": "Course Information",
+    "instruction": "Provide information on PhD programs in engineering.",
+    "input": "What are the research areas available for PhD programs at Government Engineering College, Ajmer?",
+    "output": "Government Engineering College, Ajmer offers PhD programs in research areas such as Artificial Intelligence, Robotics, Renewable Energy, Structural Engineering, and Wireless Communication."
+  },
+  {
+    "category": "Course Information",
+    "instruction": "Provide information about summer internships related to courses.",
+    "input": "Does Jaipur Engineering College and Research Centre (JECRC) provide any summer internships?",
+    "output": "Yes, Jaipur Engineering College and Research Centre (JECRC) offers summer internships for students in collaboration with leading industries. Internships are available in areas such as Software Development, Embedded Systems, Mechanical Design, and Civil Construction."
+  },
+  {
+    "category": "Course Information",
+    "instruction": "Provide details about online learning opportunities.",
+    "input": "Are there any online courses available at Rajasthan Technical University?",
+    "output": "Yes, Rajasthan Technical University offers online certification courses in areas like Data Science, Cloud Computing, and Python Programming through its e-learning platform. These courses are designed to provide flexible learning opportunities for students."
+  },
+  {
+    "category": "Course Information",
+    "instruction": "Provide general details about the duration of engineering programs.",
+    "input": "How long does it take to complete a B.Tech program in Rajasthan?",
+    "output": "A B.Tech program in Rajasthan typically takes 4 years to complete, which is divided into 8 semesters. Each semester includes a combination of core courses, electives, and practical labs."
+  },
+  {
+    "category": "Course Information",
+    "instruction": "Give details about lateral entry into engineering programs.",
+    "input": "Is lateral entry available for diploma holders in engineering programs?",
+    "output": "Yes, diploma holders in relevant fields can gain lateral entry into the second year of B.Tech programs in Rajasthan through the LEEP (Lateral Entry in Engineering Program) after fulfilling the required eligibility criteria."
+  },
+  {
+    "category": "Course Information",
+    "instruction": "Explain the medium of instruction in engineering programs.",
+    "input": "What is the medium of instruction in B.Tech programs at government colleges in Rajasthan?",
+    "output": "The medium of instruction in B.Tech programs at government colleges in Rajasthan is primarily English. However, some institutions also provide supplementary teaching materials in Hindi for better understanding."
+  },
+  {
+    "category": "Course Information",
+    "instruction": "Provide information on available electives in engineering courses.",
+    "input": "What types of electives are offered in B.Tech programs in Rajasthan?",
+    "output": "Electives in B.Tech programs in Rajasthan vary based on specialization. Common electives include Artificial Intelligence, Cybersecurity, Data Analytics, Internet of Things (IoT), and Renewable Energy Systems."
+  },
+  {
+    "category": "Course Information",
+    "instruction": "Provide details about the grading system in engineering colleges.",
+    "input": "What grading system is followed in engineering colleges in Rajasthan?",
+    "output": "Most engineering colleges in Rajasthan follow a semester-based grading system with letter grades such as A, B, C, D, and F, where A is the highest grade. The overall performance is evaluated using a Cumulative Grade Point Average (CGPA) system."
+  },
+  {
+    "category": "Contact Details",
+    "instruction": "Provide general contact details for technical education queries in Rajasthan.",
+    "input": "What is the general contact information for technical education queries in Rajasthan?",
+    "output": "For general queries related to technical education in Rajasthan, you can contact the Department of Technical Education, Government of Rajasthan using the following details: Phone: +91-141-2223801, Email: dte@rajasthan.gov.in, Website: [www.dte.rajasthan.gov.in](http://www.dte.rajasthan.gov.in), Address: Department of Technical Education, Govt. of Rajasthan, 2nd Floor, A Block, Vidhyashram Campus, Jaipur, Rajasthan, 302017."
+  },
+  {
+    "category": "Contact Details",
+    "instruction": "Provide contact details for the admissions office of the specific college.",
+    "input": "How can I get in touch with the admissions office at Arya College of Engineering & IT?",
+    "output": "You can contact the admissions office at Arya College of Engineering & IT using the following details: Phone: +91-141-4060500, Email: admissions@aryacollege.in, Address: Arya College of Engineering & IT, Kukas, Jaipur, Rajasthan, 303101."
+  },
+  {
+    "category": "Contact Details",
+    "instruction": "Give contact information for the placement office of the specific college.",
+    "input": "What is the contact information for the placement office at Global Institute of Technology, Jaipur?",
+    "output": "The placement office at Global Institute of Technology, Jaipur can be reached at: Phone: +91-141-2332853, Email: placement@gitjaipur.com, Address: Global Institute of Technology, Sikar Road, Jaipur, Rajasthan, 302013."
+  },
+  {
+    "category": "Contact Details",
+    "instruction": "Provide contact details for the hostel office of the specific college.",
+    "input": "How can I contact the hostel office at Malaviya National Institute of Technology, Jaipur?",
+    "output": "To contact the hostel office at Malaviya National Institute of Technology, Jaipur, use the following: Phone: +91-141-2716372, Email: hostel@mnit.ac.in, Address: Malaviya National Institute of Technology, Jaipur, Rajasthan, 302017."
+  },
+  {
+    "category": "Contact Details",
+    "instruction": "Give the contact details for the finance office of the specific college.",
+    "input": "What are the contact details for the finance office at Rajasthan Technical University?",
+    "output": "The finance office at Rajasthan Technical University can be contacted at: Phone: +91-741-2202000, Email: finance@rtu.ac.in, Address: Rajasthan Technical University, Kota, Rajasthan, 324010."
+  },
+  {
+    "category": "Contact Details",
+    "instruction": "Provide contact information for the academic affairs department.",
+    "input": "How can I contact the academic affairs department at Government Engineering College, Bikaner?",
+    "output": "You can reach the academic affairs department at Government Engineering College, Bikaner at: Phone: +91-151-2250350, Email: academic@gecbikaner.ac.in, Address: Government Engineering College, KEM Road, Bikaner, Rajasthan, 334001."
+  },
+  {
+    "category": "Contact Details",
+    "instruction": "Provide general contact details for the Council of Architecture, India.",
+    "input": "What is the contact information for the Council of Architecture, India?",
+    "output": "For inquiries related to architecture courses and regulations in India, contact the Council of Architecture at: Phone: +91-11-26114796, Email: info@coa.gov.in, Website: [www.coa.gov.in](http://www.coa.gov.in), Address: Council of Architecture, 1st Floor, India Habitat Centre, Lodhi Road, New Delhi, 110003."
+  },
+  {
+    "category": "Contact Details",
+    "instruction": "Provide contact details for the All India Council for Technical Education (AICTE).",
+    "input": "How can I contact the All India Council for Technical Education (AICTE)?",
+    "output": "You can reach the All India Council for Technical Education (AICTE) at: Phone: +91-11-26131576, Email: aicte-india@nic.in, Website: [www.aicte-india.org](http://www.aicte-india.org), Address: AICTE Headquarters, Nelson Mandela Marg, Vasant Kunj, New Delhi, 110070."
+  },
+  {
+    "category": "Contact Details",
+    "instruction": "Provide general contact information for the Directorate of Technical Education in any state in India.",
+    "input": "What is the contact information for the Directorate of Technical Education in any state in India?",
+    "output": "The Directorate of Technical Education for various states can be reached generally through their respective websites or common contact numbers. For example, for Maharashtra: Phone: +91-22-25734817, Email: dte@maharashtra.gov.in, Website: [www.dtemaharashtra.gov.in](http://www.dtemaharashtra.gov.in). Please check the specific state's Directorate of Technical Education website for exact details."
+  },
+  {
+    "category": "Contact Details",
+    "instruction": "Provide contact details for the National Board of Accreditation (NBA), India.",
+    "input": "What is the contact information for the National Board of Accreditation (NBA), India?",
+    "output": "For queries related to accreditation of technical programs in India, contact the National Board of Accreditation at: Phone: +91-11-26172495, Email: nba@nbaind.org, Website: [www.nbaind.org](http://www.nbaind.org), Address: National Board of Accreditation, 4th Floor, ISBT Building, Kashmere Gate, Delhi, 110006."
+  },
+  {
+    "category": "Contact Details",
+    "instruction": "Provide general contact details for the University Grants Commission (UGC), India.",
+    "input": "How can I contact the University Grants Commission (UGC) in India?",
+    "output": "For general inquiries about higher education in India, you can contact the University Grants Commission at: Phone: +91-11-23232131, Email: ugc@nic.in, Website: [www.ugc.ac.in](http://www.ugc.ac.in), Address: University Grants Commission, Bahadur Shah Zafar Marg, New Delhi, 110002."
+  },
+  {
+    "category": "Contact Details",
+    "instruction": "Provide contact details for the Rajasthan State Engineering Admission Process (REAP) office.",
+    "input": "How can I contact the REAP office for admission-related queries?",
+    "output": "For queries related to the Rajasthan Engineering Admission Process (REAP), you can contact the REAP office at: Phone: +91-141-2708222, Email: reap@techedu.rajasthan.gov.in, Website: [www.reapraj.com](http://www.reapraj.com), Address: REAP Office, Department of Technical Education, Govt. of Rajasthan, 2nd Floor, A Block, Vidhyashram Campus, Jaipur, Rajasthan, 302017."
+  },
+  {
+    "category": "Contact Details",
+    "instruction": "Provide contact information for the Directorate of Technical Education in Rajasthan.",
+    "input": "What is the contact information for the Directorate of Technical Education in Rajasthan?",
+    "output": "You can contact the Directorate of Technical Education, Rajasthan at: Phone: +91-141-2223801, Email: dte@rajasthan.gov.in, Website: [www.dte.rajasthan.gov.in](http://www.dte.rajasthan.gov.in), Address: Directorate of Technical Education, Government of Rajasthan, 2nd Floor, A Block, Vidhyashram Campus, Jaipur, Rajasthan, 302017."
+  },
+  {
+    "category": "Contact Details",
+    "instruction": "Provide contact details for a specific college.",
+    "input": "How can I contact the administration office at Rajasthan Technical University, Kota?",
+    "output": "You can reach the administration office at Rajasthan Technical University, Kota at: Phone: +91-741-2202000, Email: admin@rtu.ac.in, Website: [www.rtu.ac.in](http://www.rtu.ac.in), Address: Rajasthan Technical University, Kota, Rajasthan, 324010."
+  },
+  {
+    "category": "Contact Details",
+    "instruction": "Give contact information for a specific college.",
+    "input": "What is the contact information for the examination office at Government Engineering College, Ajmer?",
+    "output": "For inquiries related to examinations at Government Engineering College, Ajmer, contact the examination office at: Phone: +91-145-2633250, Email: exams@gecajmer.ac.in, Address: Government Engineering College, Ajmer, Rajasthan, 305001."
+  },
+  {
+    "category": "Seat Availability",
+    "instruction": "Provide information on the number of seats available in B.Tech programs at the specific college.",
+    "input": "How many seats are available in the B.Tech programs at Arya College of Engineering & IT?",
+    "output": "Arya College of Engineering & IT offers approximately 120 seats per B.Tech program, including Computer Science, Mechanical Engineering, Civil Engineering, and Electrical Engineering. For the most current seat availability, please visit their [official website](http://www.aryacollege.in)."
+  },
+  {
+    "category": "Seat Availability",
+    "instruction": "Provide details about seat availability for the B.Tech program at the specific college.",
+    "input": "What is the current seat availability for the B.Tech program at Global Institute of Technology, Jaipur?",
+    "output": "Global Institute of Technology, Jaipur currently has around 100 seats available for the B.Tech programs. For updated information on seat availability, check their [official website](http://www.gitjaipur.com)."
+  },
+  {
+    "category": "Seat Availability",
+    "instruction": "Give information on the seat availability for the specific branch at the specific college.",
+    "input": "How many seats are available for the Electronics and Communication Engineering branch at Malaviya National Institute of Technology, Jaipur?",
+    "output": "Malaviya National Institute of Technology, Jaipur has 60 seats available for the Electronics and Communication Engineering branch. For real-time updates, refer to their [official website](http://www.mnit.ac.in)."
+  },
+  {
+    "category": "Seat Availability",
+    "instruction": "Provide seat availability information for the B.Tech program at the specific college.",
+    "input": "What is the current seat availability for the B.Tech program at Rajasthan Technical University?",
+    "output": "Rajasthan Technical University currently has approximately 150 seats available across various B.Tech programs. For detailed and updated seat availability, visit their [official website](http://www.rtu.ac.in)."
+  },
+  {
+    "category": "Seat Availability",
+    "instruction": "Provide information on the seat availability for the specific program at the specific college.",
+    "input": "What is the seat availability for the Civil Engineering program at Government Engineering College, Ajmer?",
+    "output": "Government Engineering College, Ajmer has 80 seats available for the Civil Engineering program. For the latest updates, check their [official website](http://www.gecajmer.ac.in)."
+  },
+  {
+    "category": "Seat Availability",
+    "instruction": "Give information about seat availability for B.Tech programs at the specific college.",
+    "input": "How many seats are available for B.Tech programs at Government Engineering College, Bikaner?",
+    "output": "Government Engineering College, Bikaner has around 100 seats available across its B.Tech programs. For the most recent seat availability information, visit their [official website](http://www.gecbikaner.ac.in)."
+  },
+  {
+    "category": "Seat Availability",
+    "instruction": "Provide seat availability details for the specific program at specific college.",
+    "input": "What is the current seat availability for the Mechanical Engineering program at Rajasthan Institute of Engineering & Technology?",
+    "output": "Rajasthan Institute of Engineering & Technology has 90 seats available for the Mechanical Engineering program. For up-to-date seat information, refer to their [official website](http://www.rniet.edu.in)."
+  },
+  {
+    "category": "Seat Availability",
+    "instruction": "Provide information on the number of seats available in the B.Tech programs at the specific college.",
+    "input": "How many seats are available in the B.Tech programs at Jaipur Engineering College and Research Centre?",
+    "output": "Jaipur Engineering College and Research Centre offers approximately 120 seats for each B.Tech program. For the latest seat availability, please visit their [official website](http://www.jecrc.ac.in)."
+  },
+  {
+    "category": "Seat Availability",
+    "instruction": "Give details about the seat availability for B.Tech in specific branch/field at the specific college.",
+    "input": "What is the seat availability for B.Tech Computer Science at Amity University, Jaipur?",
+    "output": "Amity University, Jaipur has 100 seats available for the B.Tech Computer Science program. For current seat availability, check their [official website](http://www.amity.edu/jaipur)."
+  },
+  {
+    "category": "Seat Availability",
+    "instruction": "Provide seat availability information for B.Tech programs at the specific college.",
+    "input": "How many seats are available in the B.Tech programs at Indian Institute of Information Technology (IIIT) Kota?",
+    "output": "Indian Institute of Information Technology (IIIT) Kota has approximately 80 seats available for its B.Tech programs. For the latest seat details, visit their [official website](http://www.iiitkota.ac.in)."
+  },
+  {
+    "category": "Seat Availability",
+    "instruction": "Provide general information on how to check seat availability for engineering colleges.",
+    "input": "How can I check the seat availability for engineering colleges in Rajasthan?",
+    "output": "To check seat availability for engineering colleges in Rajasthan, you can visit the official websites of the respective colleges or the Rajasthan Technical Education Department's [website](http://www.dte.rajasthan.gov.in). Additionally, you can contact the admission offices of the colleges directly for the most accurate information."
+  },
+  {
+    "category": "Seat Availability",
+    "instruction": "Provide information on the availability of seats in B.Tech programs for reserved categories at engineering colleges.",
+    "input": "How can I find out about seat availability for reserved categories in B.Tech programs at engineering colleges in Rajasthan?",
+    "output": "To find out about seat availability for reserved categories in B.Tech programs at engineering colleges in Rajasthan, visit the official website of the respective colleges or the [Rajasthan Technical Education Department's website](http://www.dte.rajasthan.gov.in). Reserved category seat details are usually updated on these platforms."
+  },
+  {
+    "category": "Previous Years' Cutoff",
+    "instruction": "Provide the cutoff scores for specific branch at the specific college for the previous year.",
+    "input": "What was the cutoff score for B.Tech Computer Science Engineering at Malaviya National Institute of Technology, Jaipur last year?",
+    "output": "The cutoff score for B.Tech Computer Science Engineering at Malaviya National Institute of Technology, Jaipur was 98.5 percentile in the previous year. For detailed cutoff information, refer to their [official website](http://www.mnit.ac.in)."
+  },
+  {
+    "category": "Previous Years' Cutoff",
+    "instruction": "Provide the cutoff scores for specific branch at specific college.",
+    "input": "What was the cutoff for B.Tech Mechanical Engineering at Rajasthan Technical University last year?",
+    "output": "The cutoff score for B.Tech Mechanical Engineering at Rajasthan Technical University was 93 percentile in the previous year. For the most accurate information, check their [official website](http://www.rtu.ac.in)."
+  },
+  {
+    "category": "Previous Years' Cutoff",
+    "instruction": "Provide cutoff details for specific branch at the specific college.",
+    "input": "What was the cutoff score for B.Tech Electronics and Communication Engineering at Jaipur Engineering College and Research Centre in the previous year?",
+    "output": "The cutoff score for B.Tech Electronics and Communication Engineering at Jaipur Engineering College and Research Centre was 90 percentile last year. For more information, visit their [official website](http://www.jecrc.ac.in)."
+  },
+  {
+    "category": "Previous Years' Cutoff",
+    "instruction": "Give the cutoff scores for specific branch at the specific college for the previous year.",
+    "input": "What was the previous year's cutoff for B.Tech Computer Science Engineering at Rajasthan Institute of Engineering & Technology?",
+    "output": "The cutoff score for B.Tech Computer Science Engineering at Rajasthan Institute of Engineering & Technology was 92 percentile last year. For updated cutoff details, refer to their [official website](http://www.rniet.edu.in)."
+  },
+  {
+    "category": "Previous Years' Cutoff",
+    "instruction": "Provide the previous year's cutoff scores for the specific branch in the specific college.",
+    "input": "What was the cutoff for B.Tech Information Technology at Amity University, Jaipur last year?",
+    "output": "The cutoff score for B.Tech Information Technology at Amity University, Jaipur was 89 percentile in the previous year. For the latest information, visit their [official website](http://www.amity.edu/jaipur)."
+  },
+  {
+    "category": "Previous Years' Cutoff",
+    "instruction": "Provide general information on how to check previous years' cutoffs for engineering colleges.",
+    "input": "How can I find out the previous years' cutoff scores for engineering colleges in Rajasthan?",
+    "output": "To find out previous years' cutoff scores for engineering colleges in Rajasthan, visit the official websites of the respective colleges or the [Rajasthan Technical Education Department's website](http://www.dte.rajasthan.gov.in). Additionally, you can contact the admission offices of the colleges for historical cutoff information."
+  },
+  {
+    "category": "Previous Years' Cutoff",
+    "instruction": "Provide general information on how to obtain previous years' cutoff data for various engineering branches.",
+    "input": "How can I obtain previous years' cutoff data for various engineering branches?",
+    "output": "To obtain previous years' cutoff data for various engineering branches, you can visit the official websites of the engineering colleges, check admission brochures, or contact the colleges' admission offices directly. Additionally, some education portals and forums may also provide historical cutoff information."
+  },
+  {
+    "category": "Alumni Information",
+    "instruction": "Provide information about notable alumni of the specific college.",
+    "input": "Who are some notable alumni of Malaviya National Institute of Technology, Jaipur?",
+    "output": "Notable alumni of Malaviya National Institute of Technology, Jaipur include Dr. Dinesh Sharma, Vice Chairman of the Uttar Pradesh State Industrial Development Corporation, and Pankaj Patel, Chairman of Cadila Healthcare. For more details, visit their [alumni page](http://www.mnit.ac.in/alumni)."
+  },
+  {
+    "category": "Alumni Information",
+    "instruction": "Provide details about notable alumni from the college.",
+    "input": "Can you tell me about some prominent alumni of Rajasthan Technical University?",
+    "output": "Prominent alumni of Rajasthan Technical University include Sandeep Jain, CEO of InfoEdge (India) Ltd., and Amit Agarwal, Chief Technology Officer at Amazon India. More information can be found on their [alumni network](http://www.rtu.ac.in/alumni)."
+  },
+  {
+    "category": "Alumni Information",
+    "instruction": "Provide information about successful alumni from college.",
+    "input": "Who are some successful alumni of Government Engineering College, Ajmer?",
+    "output": "Successful alumni of Government Engineering College, Ajmer include Praveen Kumar, Co-Founder of Tech Mahindra, and Ramesh Sinha, Senior Engineer at Tata Consultancy Services. Visit their [official site](http://www.gecajmer.ac.in) for more details."
+  },
+  {
+    "category": "Alumni Information",
+    "instruction": "List notable alumni from the specific college.",
+    "input": "What are some notable alumni from Government Engineering College, Bikaner?",
+    "output": "Notable alumni of Government Engineering College, Bikaner include Anil Kumar, Director at Bosch India, and Nisha Sharma, Head of Product Development at Wipro. Additional information is available on their [alumni page](http://www.gecbikaner.ac.in)."
+  },
+  {
+    "category": "Alumni Information",
+    "instruction": "Provide details about distinguished alumni of the specific college.",
+    "input": "Can you tell me about some distinguished alumni of Jaipur Engineering College and Research Centre?",
+    "output": "Distinguished alumni of Jaipur Engineering College and Research Centre include Sanjay Sharma, CTO at Infosys, and Deepak Agarwal, Principal Architect at Oracle. For more information, visit their [alumni page](http://www.jecrc.ac.in/alumni)."
+  },
+  {
+    "category": "Alumni Information",
+    "instruction": "Give information about the professional achievements of alumni from the specific college.",
+    "input": "Who are some notable professionals who graduated from Rajasthan Institute of Engineering & Technology?",
+    "output": "Notable professionals from Rajasthan Institute of Engineering & Technology include Rajesh Jain, Senior Vice President at HCL Technologies, and Priya Desai, Director at Capgemini. Visit their [alumni network](http://www.rniet.edu.in) for more details."
+  },
+  {
+    "category": "Alumni Information",
+    "instruction": "List achievements of alumni from the specific college.",
+    "input": "Who are some successful alumni from Amity University, Jaipur?",
+    "output": "Successful alumni from Amity University, Jaipur include Arun Kumar, Chief Data Scientist at IBM, and Neha Gupta, Founder of a successful tech startup. For more information, visit their [alumni page](http://www.amity.edu/jaipur)."
+  },
+  {
+    "category": "Alumni Information",
+    "instruction": "Provide information about key alumni from the college.",
+    "input": "Can you list some key alumni from Manipal University, Jaipur?",
+    "output": "Key alumni of Manipal University, Jaipur include Suresh Babu, Senior Engineer at Intel, and Meera Shah, Lead Architect at Microsoft. Additional details are available on their [alumni network](http://www.manipal.edu/jaipur)."
+  },
+  {
+    "category": "Alumni Information",
+    "instruction": "List notable alumni of the specific college.",
+    "input": "Can you tell me about some notable alumni of Engineering College, Jhalawar?",
+    "output": "Notable alumni of Engineering College, Jhalawar include Rajeev Malhotra, Lead Software Engineer at Cisco, and Aarti Singh, Director of R&D at Infosys. More information can be found on their [alumni page](http://www.gecjhalawar.ac.in)."
+  },
+  {
+    "category": "Alumni Information",
+    "instruction": "Provide information on the career paths of alumni from the specific college.",
+    "input": "What career paths have alumni from Government Engineering College, Ajmer taken?",
+    "output": "Alumni from Government Engineering College, Ajmer have pursued diverse career paths, including roles such as CTOs in major tech firms, senior engineers in global companies, and successful entrepreneurs. For specific examples, refer to their [alumni section](http://www.gecajmer.ac.in)."
+  },
+  {
+    "category": "Alumni Information",
+    "instruction": "Give information about the notable achievements of alumni from college.",
+    "input": "Can you provide details about the notable achievements of alumni from Government Engineering College, Bikaner?",
+    "output": "Notable achievements of alumni from Government Engineering College, Bikaner include significant contributions to technology advancements and leadership roles in top multinational corporations. For more information, check their [official site](http://www.gecbikaner.ac.in)."
+  },
+  {
+    "category": "Alumni Information",
+    "instruction": "List the achievements of alumni from the college.",
+    "input": "What are some notable achievements of alumni from Jaipur Engineering College and Research Centre?",
+    "output": "Alumni from Jaipur Engineering College and Research Centre have achieved remarkable success in various fields, including leadership positions in major tech companies and recognition in their respective industries. Visit their [alumni network](http://www.jecrc.ac.in/alumni) for detailed information."
+  },
+  {
+    "category": "Alumni Information",
+    "instruction": "Provide details on the career achievements of alumni from the specific college.",
+    "input": "What are some notable career achievements of alumni from Rajasthan Institute of Engineering & Technology?",
+    "output": "Alumni from Rajasthan Institute of Engineering & Technology have achieved significant career milestones, including high-ranking positions in top tech firms and successful startups. For more details, check their [alumni page](http://www.rniet.edu.in)."
+  },
+  {
+    "category": "Alumni Information",
+    "instruction": "Give a general overview of the alumni network and achievements for the specific college.",
+    "input": "How can I learn about the alumni network and achievements for engineering colleges in Rajasthan?",
+    "output": "To learn about the alumni network and achievements for engineering colleges in Rajasthan, visit the official websites of the respective colleges where they often have dedicated alumni sections. These sections provide information about notable alumni, their career achievements, and ways to connect with them. For general inquiries, you can also contact the alumni associations directly."
+  },
+  {
+    "category": "Fee Structure",
+    "instruction": "Provide the fee structure for engineering courses.",
+    "input": "What is the fee structure for B.Tech at Government Engineering College, Jodhpur?",
+    "output": "The fee structure for B.Tech at Government Engineering College, Jodhpur is approximately INR 70,000 per year, including tuition fees, development fees, and other charges. Hostel fees are around INR 15,000 per year, excluding mess charges. Scholarships are available for eligible students."
+  },
+  {
+    "category": "Fee Structure",
+    "instruction": "Provide the fee structure for B.Tech a specific branch.",
+    "input": "What is the cost of a B.Tech in Computer Science at Indian Institute of Technology Delhi (IIT Delhi)?",
+    "output": "IIT Delhi is a premier public institute and B.Tech programs there typically have subsidized tuition fees. The fees for B.Tech in Computer Science could be around INR 10,000 - 20,000 per year. However, there might be additional charges for hostel, mess, and other student life expenses. It's recommended to check the official IIT Delhi website for the latest fee structure."
+  },
+  {
+    "category": "Fee Structure",
+    "instruction": "Provide the fee structure for courses.",
+    "input": "I'm interested in studying engineering abroad. What's the typical fee structure for undergraduate programs?",
+    "output": "Engineering programs at international universities can range widely in cost. In the US, for instance, tuition fees could be anywhere from USD 20,000 to USD 50,000 per year. In Europe, universities might have lower tuition fees but additional living expenses. Researching specific universities and considering scholarships is crucial when planning international engineering studies."
+  },
+  {
+    "category": "Fee Structure",
+    "instruction": "Provide the fee structure for engineering courses.",
+    "input": "How much does an M.Tech in Mechanical Engineering cost at a private university?",
+    "output": "The fees for M.Tech programs in private universities can vary significantly depending on the institution, location, and specialization. Generally, you can expect a range of INR 1.5 lakhs - 3 lakhs per semester for an M.Tech in Mechanical Engineering. It's advisable to contact the specific universities you're interested in for their detailed fee structure."
+  },
+  {
+    "category": "Fee Structure",
+    "instruction": "Provide the fee structure for courses.",
+    "input": "The fees seem high. Are there any scholarships available for engineering students?",
+    "output": "Absolutely! Many government and private institutions offer scholarships specifically for engineering students. These scholarships can significantly reduce the financial burden. You can check the websites of universities, scholarship portals, and government websites for relevant scholarship opportunities."
+  },
+  {
+    "category": "Scholarships",
+    "instruction": "Describe the available scholarships for students.",
+    "input": "Are there any scholarships available for SC/ST students?",
+    "output": "Yes, there are several scholarships available for SC/ST students in Rajasthan, including the Post-Matric Scholarship for SC/ST/OBC students provided by the state government. Eligible students must have a valid caste certificate and meet the income criteria. The scholarship covers tuition fees, maintenance allowance, and other expenses."
+  },
+  {
+    "category": "Scholarships",
+    "instruction": "Describe the available scholarships for engineering students.",
+    "input": "What are the eligibility criteria for the Rajasthan Post-Matric Scholarship?",
+    "output": "The Rajasthan Post-Matric Scholarship is available for SC/ST/OBC students. Eligibility requires students to have a valid caste certificate, meet the income criteria set by the state government, and be enrolled in a recognized college or university. The scholarship covers tuition fees, maintenance allowance, and other related expenses."
+  },
+  {
+    "category": "Scholarships",
+    "instruction": "Describe the available scholarships for students.",
+    "input": "What documents are required for applying for the Rajasthan Merit-Cum-Means Scholarship?",
+    "output": "To apply for the Rajasthan Merit-Cum-Means Scholarship, students need to provide the following documents: proof of income, a valid caste certificate (if applicable), admission proof in a recognized engineering college, previous academic records, and a bank account statement. The scholarship supports students based on merit and financial need."
+  },
+  {
+    "category": "Scholarships",
+    "instruction": "Describe the available scholarships for students.",
+    "input": "What is the deadline for applying for the Rajasthan Engineering Scholarship?",
+    "output": "The application deadline for the Rajasthan Engineering Scholarship is typically in June each year. Students are advised to check the official Rajasthan government scholarship portal for the exact dates and any updates regarding the application process."
+  },
+  {
+    "category": "Scholarships",
+    "instruction": "Describe the available scholarships for students.",
+    "input": "Are there any scholarships available for women pursuing engineering in Rajasthan?",
+    "output": "Yes, there are scholarships available for women pursuing engineering in Rajasthan. One such scholarship is the 'Rajasthan State Women Empowerment Scholarship,' which supports female students based on merit and financial need. Applicants must be enrolled in a recognized engineering college and meet the eligibility criteria, including academic performance and family income limits."
+  },
+  {
+    "category": "Scholarships",
+    "instruction": "Describe the available scholarships for students.",
+    "input": "What are the criteria for the Dr. Ambedkar Post-Matric Scholarship for engineering students?",
+    "output": "The Dr. Ambedkar Post-Matric Scholarship is available for SC/ST students. The criteria include having a valid caste certificate, being enrolled in a recognized engineering program, and meeting the income limits set by the government. The scholarship provides financial assistance for tuition fees and maintenance expenses."
+  },
+  {
+    "category": "Scholarships",
+    "instruction": "Describe the available scholarships for engineering students.",
+    "input": "How can I apply for the Rajasthan Engineering Merit Scholarship?",
+    "output": "To apply for the Rajasthan Engineering Merit Scholarship, students need to fill out the online application form available on the Rajasthan government scholarship portal. They must provide academic records, proof of admission to an engineering college, and income details. Applications are usually open from April to June each year."
+  },
+  {
+    "category": "Scholarships",
+    "instruction": "Describe the available scholarships for students.",
+    "input": "What is the selection process for the Rajasthan Engineering Scholarship?",
+    "output": "The selection process for the Rajasthan Engineering Scholarship involves evaluating students based on their academic performance, financial need, and adherence to eligibility criteria. Shortlisted candidates may be required to attend an interview or provide additional documentation as part of the final selection process."
+  },
+  {
+    "category": "Scholarships",
+    "instruction": "Describe the available scholarships for students.",
+    "input": "Are there any scholarships available for polytechnic students in Rajasthan?",
+    "output": "Yes, there are scholarships available for polytechnic students in Rajasthan, including the Rajasthan Polytechnic Scholarship Scheme. Eligibility requires students to be enrolled in a recognized polytechnic institute, meet income criteria, and have satisfactory academic performance. The scholarship covers tuition and other educational expenses."
+  },
+  {
+    "category": "Scholarships",
+    "instruction": "Describe the available scholarships for students.",
+    "input": "What are the benefits of the Rajasthan Scholarship for Economically Backward Classes?",
+    "output": "The Rajasthan Scholarship for Economically Backward Classes provides financial support to students from economically weaker sections. Benefits include coverage of tuition fees, maintenance allowance, and other educational expenses. Eligibility requires meeting income limits and being enrolled in a recognized engineering or polytechnic institution."
+  },
+  {
+    "category": "Scholarships",
+    "instruction": "Describe the available scholarships for students.",
+    "input": "What is the maximum amount offered by the Rajasthan Technical Education Scholarship?",
+    "output": "The Rajasthan Technical Education Scholarship offers a maximum amount of INR 50,000 per year. This amount is provided to cover tuition fees, books, and other educational expenses for eligible students based on merit and financial need."
+  },
+  {
+    "category": "Scholarships",
+    "instruction": "Describe the available scholarships for students.",
+    "input": "What is the application process for the Rajasthan Engineering Excellence Scholarship?",
+    "output": "To apply for the Rajasthan Engineering Excellence Scholarship, students need to submit an online application form available on the scholarship portal. Required documents include academic records, proof of engineering college admission, and family income details. Applications are typically accepted from May to August each year."
+  },
+  {
+    "category": "Scholarships",
+    "instruction": "Describe the available scholarships for students.",
+    "input": "Are there any scholarships for students from rural areas pursuing engineering in Rajasthan?",
+    "output": "Yes, there are scholarships available for students from rural areas pursuing engineering in Rajasthan, such as the 'Rural Talent Scholarship Scheme.' This scholarship supports students based on merit and financial need, with a focus on those coming from rural backgrounds. Eligibility criteria include academic performance and family income limits."
+  },
+  {
+    "category": "Scholarships",
+    "instruction": "Describe the available scholarships for students.",
+    "input": "What is the eligibility requirement for the Rajasthan Engineering Merit-Cum-Means Scholarship?",
+    "output": "The Rajasthan Engineering Merit-Cum-Means Scholarship requires students to have excellent academic performance and demonstrate financial need. Eligibility includes having secured admission to a recognized engineering college, meeting the income criteria set by the scholarship authorities, and maintaining a minimum academic standard."
+  },
+  {
+    "category": "Scholarships",
+    "instruction": "Describe the available scholarships for students.",
+    "input": "What are the deadlines for applying for the Rajasthan Engineering Excellence Scholarship?",
+    "output": "The deadlines for applying for the Rajasthan Engineering Excellence Scholarship are usually from June 1st to September 30th. Students should check the official scholarship portal for the most accurate and updated deadlines."
+  },
+  {
+    "category": "Scholarships",
+    "instruction": "Describe the available scholarships for students.",
+    "input": "How can I check the status of my scholarship application?",
+    "output": "To check the status of your scholarship application, visit the official Rajasthan government scholarship portal and log in with your credentials. There, you can view the status of your application, any updates, and additional requirements if needed."
+  },
+
+  {
+    "category": "Hostel Facilities",
+    "instruction": "Provide information on hostel facilities.",
+    "input": "What are the hostel facilities at MBM Engineering College, Jodhpur?",
+    "output": "MBM Engineering College, Jodhpur provides separate hostels for boys and girls with options for single, double, and triple occupancy rooms. Facilities include Wi-Fi, common rooms, study areas, 24/7 security, and mess facilities. The annual hostel fee is around INR 20,000, excluding mess charges."
+  },
+  {
+    "category": "Hostel Facilities",
+    "instruction": "Provide information on hostel facilities.",
+    "input": "Are there any special facilities for international students at Government Engineering College, Bikaner?",
+    "output": "Yes, Government Engineering College, Bikaner provides dedicated accommodation for international students. Facilities include single rooms, Wi-Fi, study areas, a common lounge, and international cuisine options in the mess. The hostel also offers assistance with cultural orientation."
+  },
+  {
+    "category": "Hostel Facilities",
+    "instruction": "Provide information on hostel facilities.",
+    "input": "What is the average hostel fee at Engineering College, Ajmer?",
+    "output": "The average hostel fee at Engineering College, Ajmer is around INR 18,000 per year. This fee covers accommodation in a shared room, Wi-Fi access, and basic amenities. Mess charges are additional and vary based on the meal plan chosen."
+  },
+  {
+    "category": "Hostel Facilities",
+    "instruction": "Provide information on hostel facilities.",
+    "input": "What are the amenities available in the hostels at Government Engineering College, Jhalawar?",
+    "output": "Hostels at Government Engineering College, Jhalawar include amenities such as Wi-Fi, study rooms, sports facilities, a common dining area, 24/7 security, and laundry services. Students have options for single and shared rooms, with an annual hostel fee of approximately INR 22,000."
+  },
+  {
+    "category": "Hostel Facilities",
+    "instruction": "Provide information on hostel facilities.",
+    "input": "Are there any guest rooms available in the hostels at Malaviya National Institute of Technology, Jaipur?",
+    "output": "Malaviya National Institute of Technology, Jaipur provides guest rooms in their hostels for visitors and parents. These rooms are equipped with basic amenities, and booking is subject to availability. The institute also offers a visitor's lounge and meeting areas."
+  },
+  {
+    "category": "Hostel Facilities",
+    "instruction": "Provide information on hostel facilities.",
+    "input": "What are the laundry facilities like in the hostels at Government Engineering College, Kota?",
+    "output": "The hostels at Government Engineering College, Kota have dedicated laundry rooms with washing machines and dryers. Students can use these facilities for a nominal fee. Laundry services are also available at an additional cost."
+  },
+  {
+    "category": "Hostel Facilities",
+    "instruction": "Provide information on hostel facilities.",
+    "input": "What security measures are in place at the hostels of Government Engineering College, Udaipur?",
+    "output": "Hostels at Government Engineering College, Udaipur are equipped with 24/7 security guards, CCTV surveillance, and controlled entry and exit points. There are also emergency contact numbers and safety protocols in place for students."
+  },
+  {
+    "category": "Hostel Facilities",
+    "instruction": "Provide information on hostel facilities.",
+    "input": "Is there a mess facility available in the hostels of Engineering College, Ajmer?",
+    "output": "Yes, Engineering College, Ajmer provides a mess facility in its hostels. The mess offers a variety of meal plans, including vegetarian and non-vegetarian options. The mess fee is additional and varies based on the meal plan chosen."
+  },
+  {
+    "category": "Hostel Facilities",
+    "instruction": "Provide information on hostel facilities.",
+    "input": "What types of rooms are available in the hostels at Government Engineering College, Bikaner?",
+    "output": "Government Engineering College, Bikaner offers various types of rooms in their hostels, including single, double, and triple occupancy rooms. Each room is furnished with basic amenities like beds, desks, and chairs. Wi-Fi and common facilities are also available."
+  },
+  {
+    "category": "Hostel Facilities",
+    "instruction": "Provide information on hostel facilities.",
+    "input": "Are there any recreational facilities in the hostels at Rajasthan Institute of Engineering and Technology?",
+    "output": "Yes, Rajasthan Institute of Engineering and Technology offers recreational facilities in their hostels, including a common room with TV, indoor games like table tennis and chess, and a small library. These facilities are available for all hostel residents."
+  },
+  {
+    "category": "Hostel Facilities",
+    "instruction": "Provide information on hostel facilities.",
+    "input": "What are the room options available in the hostels at MBM Engineering College, Jodhpur?",
+    "output": "MBM Engineering College, Jodhpur provides various room options in their hostels, including single, double, and triple sharing rooms. Each room is equipped with basic furniture, and students have access to common facilities like Wi-Fi, study areas, and mess services."
+  },
+  {
+    "category": "Hostel Facilities",
+    "instruction": "Provide information on hostel facilities.",
+    "input": "Do the hostels at Government Engineering College, Jhalawar offer Wi-Fi?",
+    "output": "Yes, the hostels at Government Engineering College, Jhalawar offer Wi-Fi connectivity for students. The Wi-Fi is available throughout the hostel premises, including common areas and individual rooms."
+  },
+  {
+    "category": "Hostel Facilities",
+    "instruction": "Provide information on hostel facilities.",
+    "input": "What is the process to apply for hostel accommodation at Rajasthan Technical University?",
+    "output": "To apply for hostel accommodation at Rajasthan Technical University, students need to fill out an online application form available on the university's website. The application should include proof of admission, identification documents, and a recent photograph. The hostel allotment is based on availability and merit."
+  },
+  {
+    "category": "Hostel Facilities",
+    "instruction": "Provide information on hostel facilities.",
+    "input": "Are there any facilities for differently-abled students in the hostels at Government Engineering College, Kota?",
+    "output": "Government Engineering College, Kota provides special facilities for differently-abled students, including accessible rooms, ramps, and modified bathrooms. The hostels are equipped to accommodate the needs of differently-abled students to ensure their comfort and safety."
+  },
+  {
+    "category": "Hostel Facilities",
+    "instruction": "Provide information on hostel facilities.",
+    "input": "What are the common areas available in the hostels at Malaviya National Institute of Technology, Jaipur?",
+    "output": "The hostels at Malaviya National Institute of Technology, Jaipur feature several common areas, including a lounge, study rooms, and recreational spaces. These areas are equipped with amenities such as TVs, board games, and internet access to facilitate relaxation and social interaction among students."
+  },
+  {
+    "category": "Placement Information",
+    "instruction": "Explain placement opportunities available at a specific college.",
+    "input": "What are the placement opportunities at the College of Technology and Engineering, Udaipur?",
+    "output": "The College of Technology and Engineering, Udaipur has a dedicated placement cell that helps students find job opportunities in various industries. Top recruiters include Infosys, TCS, L&T, and Wipro. The average package offered last year was INR 4.5 LPA, with the highest package reaching INR 12 LPA."
+  },
+  {
+    "category": "Placement Information",
+    "instruction": "Explain placement opportunities available at a specific college.",
+    "input": "What are the placement opportunities at Rajasthan Technical University?",
+    "output": "Rajasthan Technical University has a robust placement cell that coordinates with numerous companies for student placements. Major recruiters include Infosys, TCS, Wipro, and Accenture. The average salary package for the last academic year was around INR 5 LPA, with top offers going up to INR 15 LPA."
+  },
+  {
+    "category": "Placement Information",
+    "instruction": "Explain placement opportunities available at a specific college.",
+    "input": "What is the placement record of Government Engineering College, Bikaner?",
+    "output": "Government Engineering College, Bikaner boasts a strong placement record with companies like IBM, Tech Mahindra, and Capgemini regularly hiring graduates. The average package offered is approximately INR 4.2 LPA, with some students receiving offers up to INR 10 LPA."
+  },
+  {
+    "category": "Placement Information",
+    "instruction": "Explain placement opportunities available at a specific college.",
+    "input": "What are the placement statistics for MBM Engineering College, Jodhpur?",
+    "output": "MBM Engineering College, Jodhpur has a dedicated placement cell that works closely with top companies such as Cisco, HCL, and Amazon. The average salary package offered is INR 6 LPA, while the highest package last year was INR 14 LPA."
+  },
+  {
+    "category": "Placement Information",
+    "instruction": "Explain placement opportunities available at a specific college.",
+    "input": "What are the placement opportunities at Government Engineering College, Ajmer?",
+    "output": "Government Engineering College, Ajmer has a proactive placement cell that facilitates job opportunities with companies like Infosys, Wipro, and Tata Power. The average package for graduates is INR 4.5 LPA, with the highest package reaching INR 11 LPA."
+  },
+  {
+    "category": "Placement Information",
+    "instruction": "Explain placement opportunities available at a specific college.",
+    "input": "What are the placement opportunities at Malaviya National Institute of Technology, Jaipur?",
+    "output": "Malaviya National Institute of Technology, Jaipur has a strong placement record with top firms such as Google, Microsoft, and Oracle visiting the campus. The average package is around INR 7 LPA, with the highest package offered at INR 20 LPA."
+  },
+  {
+    "category": "Placement Information",
+    "instruction": "Explain placement opportunities available at a specific college.",
+    "input": "What is the placement scenario at Government Engineering College, Jhalawar?",
+    "output": "Government Engineering College, Jhalawar offers good placement opportunities with companies like HCL, Infosys, and Tech Mahindra. The average salary package is INR 4 LPA, and the highest package offered recently was INR 9 LPA."
+  },
+  {
+    "category": "Placement Information",
+    "instruction": "Explain placement opportunities available at a specific college.",
+    "input": "What are the placement statistics for Rajasthan Institute of Engineering and Technology?",
+    "output": "Rajasthan Institute of Engineering and Technology has a strong placement record with major recruiters such as Accenture, TCS, and Cognizant. The average package offered is INR 5 LPA, with the top package reaching INR 12 LPA."
+  },
+  {
+    "category": "Placement Information",
+    "instruction": "Explain placement opportunities available at a specific college.",
+    "input": "What placement opportunities are available at Government Engineering College, Kota?",
+    "output": "Government Engineering College, Kota provides ample placement opportunities with companies like Infosys, HCL, and L&T. The average salary package is INR 4.8 LPA, and the highest package offered was INR 10.5 LPA."
+  },
+  {
+    "category": "Placement Information",
+    "instruction": "Explain placement opportunities available at a specific college.",
+    "input": "What are the placement prospects at College of Technology and Engineering, Udaipur?",
+    "output": "The College of Technology and Engineering, Udaipur has an active placement cell that collaborates with various industries. Top recruiters include Infosys, Wipro, and Capgemini. The average package is around INR 5.2 LPA, with the highest offer being INR 12 LPA."
+  },
+  {
+    "category": "Placement Information",
+    "instruction": "Explain placement opportunities available at a specific college.",
+    "input": "What is the placement record at Rajasthan Institute of Engineering and Technology, Jaipur?",
+    "output": "Rajasthan Institute of Engineering and Technology, Jaipur has a commendable placement record with companies such as Deloitte, IBM, and HCL. The average salary package is INR 6 LPA, with the highest package offered at INR 13 LPA."
+  },
+  {
+    "category": "Placement Information",
+    "instruction": "Explain placement opportunities available at a specific college.",
+    "input": "What are the placement opportunities at Government Engineering College, Udaipur?",
+    "output": "Government Engineering College, Udaipur has a good placement track record with companies like Infosys, TCS, and HCL. The average salary package is INR 4.7 LPA, and the highest package offered recently was INR 11 LPA."
+  },
+  {
+    "category": "Placement Information",
+    "instruction": "Explain placement opportunities available at a specific college.",
+    "input": "What is the placement scenario at Government Engineering College, Bikaner?",
+    "output": "Government Engineering College, Bikaner has a strong placement cell that partners with firms such as Tech Mahindra, Cognizant, and Infosys. The average package for graduates is INR 4.3 LPA, with the highest package being INR 10 LPA."
+  },
+  {
+    "category": "Placement Information",
+    "instruction": "Explain placement opportunities available at a specific college.",
+    "input": "What are the placement opportunities at Government Engineering College, Ajmer?",
+    "output": "Government Engineering College, Ajmer has a solid placement record with top companies like Wipro, Infosys, and L&T visiting the campus. The average salary package is INR 4.4 LPA, and the highest package offered was INR 9 LPA."
+  },
+  {
+    "category": "Placement Information",
+    "instruction": "Explain placement opportunities available at a specific college.",
+    "input": "What are the placement opportunities at Malaviya National Institute of Technology, Jaipur?",
+    "output": "Malaviya National Institute of Technology, Jaipur offers excellent placement opportunities with major recruiters including Microsoft, Google, and Oracle. The average salary package is INR 8 LPA, and the highest package offered was INR 22 LPA."
+  },
+  {
+    "category": "Placement Information",
+    "instruction": "Explain placement opportunities available at a specific college.",
+    "input": "What is the placement record of MBM Engineering College, Jodhpur?",
+    "output": "MBM Engineering College, Jodhpur has a strong placement cell with companies such as TCS, Infosys, and Accenture recruiting students. The average salary package offered is INR 5.5 LPA, with the highest package reaching INR 14 LPA."
+  }
+]
