@@ -1,0 +1,18 @@
+==========================
+Average Inference Time: 4.7325 sec
+Best Inference Time: 4.8443 sec
+Median Inference Time: 4.7036 sec
+Worst Inference Time: 4.5913 sec
+First Token Generation Time: 4.5913 sec
+Second Token to Last Token Generation Time: 19.0710 sec
+==========================
+Average VRAM Usage: 55.4200 % VRAM Usage
+Best VRAM Usage: 55.3000 % VRAM Usage
+Median VRAM Usage: 55.4000 % VRAM Usage
+Worst VRAM Usage: 55.6000 % VRAM Usage
+==========================
+Average CPU Usage: 29.4200 % CPU Usage
+Best CPU Usage: 28.3286 % CPU Usage
+Median CPU Usage: 29.5786 % CPU Usage
+Worst CPU Usage: 30.3214 % CPU Usage
+Tokens per second: 10.57
