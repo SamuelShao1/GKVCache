@@ -1,3 +1,4 @@
+import os
 import numpy as np
 import torch
 from typing import Dict, List, Tuple, Optional, Any, Set
@@ -17,7 +18,12 @@ import diagnostic
 
 # Access tokenzizer model 
 from transformers import AutoTokenizer
-tokenizer = AutoTokenizer.from_pretrained("TinyLlama/TinyLlama-1.1B-Chat-v1.0")
+model_name = os.getenv("MODEL_ID")
+token = os.getenv("HUGGING_FACE_HUB_TOKEN")
+print(f"MODEL_NAME: {model_name}")
+print(f"TOKEN: {token}")
+tokenizer = AutoTokenizer.from_pretrained(model_name, token=token, trust_remote_code=True, use_fast=True, add_prefix_space=True)
+
 
 
 EMBEDDINGG_MODEL = 'all-MiniLM-L6-v2'
@@ -28,7 +34,7 @@ class SemanticCacheEntry:
     A class representing a single entry in the semantic cache.
     The semantic cache stores the input text (prompt), its prompt embedding, and the corresponding KV cache reference.
     """
-    def __init__(self, prompt: str, embedding: np.ndarray, req_id: str, prefix_pos, timestamp: float):
+    def __init__(self, prompt: str, embedding: np.ndarray, req_id: str, prefix_pos, response: str, timestamp: float):
         """
         Initialize a SemanticCacheEntry instance.
         Args:
@@ -37,11 +43,22 @@ class SemanticCacheEntry:
             req_id (int): req id assigned by vLLM to the original generation to reference cached blocks.
             block_tables (List[List[int]]): 2D list of block IDs used nu the request for each layer's KV cache. Allowing the reuse an existing KV cache for a new and similar prompt.
             timestamp (float): Timestamp of when the entry was created, for LRU eviction policy.
+            
+
+                
         """
         self.prompt = prompt
         self.embedding = embedding
+        
+        # TODO - For attention re-use
         self.req_id = req_id
         self.prefix_pos = prefix_pos
+        #
+
+        # TODO - For output re-use
+        self.response = response
+        #
+
         self.timestamp = timestamp
         self.last_accessed = self.timestamp
         self.access_count = 0
@@ -73,8 +90,11 @@ class SemanticCacheManager:
         self.similarity_threshold = similarity_threshold
         self.max_cache_entries = max_cache_entries
 
-        # Maps cache_id to SemanticCacheEntry
-        self.cache: Dict[str, SemanticCacheEntry] = {}
+        # Global cache for all users. Maps cache_id to SemanticCacheEntry
+        self.global_cache: Dict[str, SemanticCacheEntry] = {}
+
+        # Per-user cache. Maps user_id to a dictionary of cache_id to SemanticCacheEntry
+        self.user_caches: Dict[str, Dict[str, SemanticCacheEntry]] = defaultdict(dict)
 
         # Maps rid to cid for fast lookups
         self.rid_cid: Dict[int, str] = {}
@@ -85,56 +105,128 @@ class SemanticCacheManager:
         # Cache statistics
         self.stats = {
             "total_requests": 0,
-            "semantic_hits": 0,
+            "global_hits": 0,
+            "user_hits": 0,
             "misses": 0,
-            "cache_entries": 0
+            "global_cache_entries": 0,
+            "user_cache_entries": 0
         }
 
         print(f"Initialized SemanticKVCacheManager with similarity threshold {similarity_threshold}")
 
 
-    def find_similar_prompts(self, prompt: str) -> Tuple[Optional[str], float]:
+    def find_similar_prompts(self, prompt: str, user_id: str, cache_strategy = "global_user") -> Tuple[Optional[str], float, str]:
         """
         Use cosine similarity to compute similarity score, and compare it with cache entries above the threshold.
 
 
         Args:
             prompt (str): Query prompt, textual.
+            user_id (str): User ID for per-user cache.
+            cache_strategy (str): Cache strategy. 
+                - "global_user": global and per-user cache.
+                - "global_only": Only use global cache, no per-user cache.
+                - "per_user": per-user cache, allowing different users to have their own cache entries.
+                - "no_cache" : will not use any cached states, even if they are available. Note: TGI still does KV caching within a single request, but "no-cache"
+                               will not use any cached states from previous requests.
+
+                This caching strategy parameter is also used to determined cache storage as well as cache retrieval.
 
         Returns:
-            Tuple[Optional[str], float]: Representing (cache_id of most similar prompt, cosine similarity score).
+            Tuple[Optional[str], float, str]: Representing (cache_id of most similar prompt, cosine similarity score, source ("global" or "per-user" pr "none")).
             Returns (None, 0.0) if no similar prompt is found, or no cache entries exceed the threshold value.
         """
+        self.stats["total_requests"] += 1
 
-        if not self.cache:
-            # Empty cache, no similar prompts
-            return None, 0.0
+        if cache_strategy == "no_cache":
+            # Cache is disabled
+            return None, 0.0, None, None
+        
+        if cache_strategy == "global_user" and (not self.global_cache and not self.user_caches.get(user_id, None)):
+            # Cache strategy is global_user, but no cache entries exist in either global or user-specific cache
+            return None, 0.0, None, None
+        
+        if cache_strategy == "global_only" and not self.global_cache:
+            # Cache strategy is global_only, but no cache entries exist in global cache
+            return None, 0.0, None, None
+        
+        if cache_strategy == "per_user" and not self.user_caches.get(user_id, None):
+            # Cache strategy is per_user, but no cache entries exist in user-specific cache
+            return None, 0.0, None, None
         
         query_embedding = self.embedding_function(prompt)
 
-        print(f"Query embedding: {query_embedding}")
+        # print(f"Query embedding: {query_embedding}")
         # Find the most similar prompt in the cache.
         best_cache_id = None
         best_similarity = 0.0
+        best_source = None
+        best_response = None
 
-        print(f"Cache Items: {self.cache.items()}")
-        for cache_id, entry in self.cache.items():
+        print(f"--------------SEMANTIC FIND PRE-OP STATISTICS------------------")
+        print(f"QUERY: {prompt}")
+        print(f"STATS-TOTAL_REQUESTS: {self.stats['total_requests']}")
+        print(f"STATS-GLOBAL_CACHE_ENTRIES: {self.stats['global_cache_entries']}")
+        print(f"STATS-USER_CACHE_ENTRIES: {self.stats['user_cache_entries']}")
+        print(f"STATS-GLOBAL_HITS: {self.stats['global_hits']}")
+        print(f"STATS-USER_HITS: {self.stats['user_hits']}")
+        print(f"STATS-MISSES: {self.stats['misses']}")
+        print(f"GLOBAL_CACHE_TABLE: {self.global_cache.items()}")
+        print(f"USER_CACHE_TABLE: {self.user_caches.items()}")
+        print(f"CACHE_STRATEGY: {cache_strategy}")  
+        print(f"--------------SEMANTIC FIND PRE-OP STATISTICS------------------")
 
-            cached_embedding = entry.embedding
+        # Check user cache
+        if cache_strategy in ["global_user", "per_user"]:
+            print(f"Checking user cache for user ID: {user_id}")
+            user_cache = self.user_caches.get(user_id, {})
+            print(f"User cache items: {user_cache.items()}")
+            for cache_id, entry in user_cache.items():
+                cached_embedding = entry.embedding
             
-            cos_sim = self._cos_sim(query_embedding, cached_embedding)
+                cos_sim = self._cos_sim(query_embedding, cached_embedding)
+                
+                print(f"Comparing with cache ID {cache_id}, similarity: {cos_sim}")
+
+                if cos_sim > best_similarity:
+                    best_similarity = cos_sim
+                    best_cache_id = cache_id
+                    best_source = "user"
+                    best_response = entry.response
+                    print(f"New best cache ID: {best_cache_id}, similarity: {best_similarity}")
+
+
+        # Check global cache
+        if cache_strategy in ["global_user", "global_only"]:
+            print(f"Checking global cache")
+            for cache_id, entry in self.global_cache.items():
+                cached_embedding = entry.embedding
             
-            print(f"Comparing with cache ID {cache_id} with embedding {cached_embedding}, similarity: {cos_sim}")
+                cos_sim = self._cos_sim(query_embedding, cached_embedding)
+                
+                print(f"Comparing with cache ID {cache_id}, similarity: {cos_sim}")
 
-            if cos_sim > best_similarity:
-                best_similarity = cos_sim
-                best_cache_id = cache_id
-                print(f"New best cache ID: {best_cache_id}, similarity: {best_similarity}")
+                if cos_sim > best_similarity:
+                    best_similarity = cos_sim
+                    best_cache_id = cache_id
+                    best_source = "global"
+                    best_response = entry.response
+                    print(f"New best cache ID: {best_cache_id}, similarity: {best_similarity}")
 
+
+         # Return result if above threshold
         if best_similarity > self.similarity_threshold:
-            return best_cache_id, best_similarity
+            if best_source == "global":
+                print(f"HIT! - CACHE HIT-MATCH for prompt: {prompt}. \n    BEST WAS: similarity: {best_similarity} with cache ID: {best_cache_id} from {best_source}")
+                self.stats["global_hits"] += 1
+            else:
+                print(f"HIT! - CACHE HIT-MATCH for prompt: {prompt}. \n    BEST WAS: similarity: {best_similarity} with cache ID: {best_cache_id} from {best_source}")
+                self.stats["user_hits"] += 1
+            return best_cache_id, best_similarity, best_source, best_response
         
-        return None, best_similarity
+        print(f"MISS! - CACHE MISS-MATCH for prompt: {prompt}. \n    BEST WAS: similarity: {best_similarity} with cache ID: {best_cache_id} from {best_source}")
+        self.stats["misses"] += 1
+        return None, best_similarity, None, None
     
 
     def _cos_sim(self, a: np.ndarray, b: np.ndarray) -> float:
@@ -163,62 +255,87 @@ class SemanticCacheManager:
         
         return dot_product / (norm_a * norm_b)
     
-    def on_req_start(self, prompt: str, req_id: str) -> Tuple[bool, Optional[str], float]:
+    def on_req_start(self, prompt: str, req_id: str, user_id: str, cache_strategy = "global_user") -> Tuple[bool, Optional[str], float, str, str]:
         """
         When a new request(prompt) is started, check if there are similar prompts and return the cache hit if found.
 
         Args:
             prompt (str): Input prompt.
             req_id (str): Current req id.
+            user_id (str): User ID for per-user cache.
+            cache_strategy (str): Cache strategy. 
+                - "global_user": global and per-user cache.
+                - "global_only": Only use global cache, no per-user cache.
+                - "per_user": per-user cache, allowing different users to have their own cache entries.
+                - "no_cache" : will not use any cached states, even if they are available. Note: TGI still does KV caching within a single request, but "no-cache"
+                               will not use any cached states from previous requests.
+
+                This caching strategy parameter is also used to determined cache storage as well as cache retrieval.
+
         Returns:
-            Tuple[bool, Optional[str], float]: Representation of (cache hit status, cache_id, similarity score).
+            Tuple[bool, Optional[str], float, str, str]: Representation of (cache hit status, cache_id, similarity score, source, response)
             Returns (False, None, 0.0) if no similar prompt is found.
         """
-        print(f"Processing request {req_id} with prompt: {prompt}")
-        
-        cache_id, similarity = self.find_similar_prompts(prompt)
+       
+        print(f"ON_REQ_START - Processing request {req_id} with prompt: {prompt}")
+
+        cache_id, similarity, source, response = self.find_similar_prompts(prompt, user_id, cache_strategy)
 
         if cache_id:
             # Cache hit
-            self.stats["semantic_hits"] += 1
+            if source == "global":
+                entry = self.global_cache[cache_id]
+            else:
+                entry = self.user_caches[user_id][cache_id]
             
             # Update access
-            self.cache[cache_id].access()
+            entry.access()
 
             # New request shouldn't be cache since we used cached states itself
             self.no_cache_rids.add(req_id)
 
-            prefix_pos = self.cache[cache_id].prefix_pos
 
-            return True, cache_id, similarity, prefix_pos
+            return True, cache_id, similarity, entry.prefix_pos, source, entry.response
         
         # No matches
         self.stats["misses"] += 1
         print(f"No cache hit for prompt: {prompt}")
-        return False, None, 0.0, None
+        return False, None, 0.0, None, None, None
     
-    def on_req_end(self, prompt: str, req_id: int, prefix_pos: int) -> Optional[str]:
+    def on_req_end(self, prompt: str, req_id: int, prefix_pos: int, response: str, user_id: str, cache_strategy = "global_user") -> Optional[str]:
         """
         When a request (promot) ends, store the KV cache information for future reuse if the current request is cachable.
 
         Args:
             prompt (str): Input prompt, textual.
             req_id(int): Current req id.
-            block_tables (List[List[int]]): block tables used by the request for each layer's KV cache.
+            prefix_pos (int): Last token position of the prompt.
+            user_id (str): User ID for per-user cache.
+            cache_strategy (str): Cache strategy. 
+                - "global_user": global and per-user cache.
+                - "global_only": Only use global cache, no per-user cache.
+                - "per_user": per-user cache, allowing different users to have their own cache entries.
+                - "no_cache" : will not use any cached states, even if they are available. Note: TGI still does KV caching within a single request, but "no-cache"
+                               will not use any cached states from previous requests.
 
+                This caching strategy parameter is also used to determined cache storage as well as cache retrieval.
 
         Returns:
             Optional[str]: Cache ID of the stored entry, or None if the request is not cachable (contains cached states).
         """
         # If contains cached states, don't cache
+        if cache_strategy == "no_cache":
+            print(f"ON_REQ_END - req id {req_id} is not cachable due to no_cache strategy.")
+            return None
+        
         if req_id in self.no_cache_rids:
             self.no_cache_rids.remove(req_id)
-            print(f"req id {req_id} is not cachable due to cached states.")
+            print(f"ON_REQ_END - req id {req_id} is not cachable due to cached states.")
             return None
         
         # If already cached, don't cache again, just return mapped cache ID
         if req_id in self.rid_cid:
-            print(f"req id {req_id} is already cached.")
+            print(f"ON_REQ_END - req id {req_id} is already cached.")
             return self.rid_cid[req_id]
         
         # Otherwise, create a new cache entry
@@ -226,55 +343,70 @@ class SemanticCacheManager:
         cache_id = str(uuid.uuid4())
         embedding = self.embedding_function(prompt)
 
-        self.cache[cache_id] = SemanticCacheEntry(
+        entry = SemanticCacheEntry(
             prompt=prompt,
             embedding=embedding,
             req_id=req_id,
             prefix_pos=prefix_pos,
+            response=response,
             timestamp=time.time()
         )
+
+        # Store in appropriate cache(s)
+        # Global cache
+        if cache_strategy in ["global_user", "global_only"]:
+            self.global_cache[cache_id] = entry
+            self.stats["global_cache_entries"] = len(self.global_cache)
+        # User ache
+        if cache_strategy in ["global_user", "per_user"]:
+            self.user_caches[user_id][cache_id] = entry
+            self.stats["user_cache_entries"] = len(self.user_caches[user_id])
 
         # Update sid_cid mapping
         self.rid_cid[req_id] = cache_id
 
         # Update cache statistics
-        self.stats["cache_entries"] = len(self.cache)
+        self.stats["cache_entries"] = len(self.global_cache)
 
         # Check if we have exceeded the max cache entries, if so evict LRU
-        if len(self.cache) > self.max_cache_entries:
-            self._evict_lru()
+        self._check_cache_sizes()
 
         print(f"Stored cache entry for prompt: {prompt}, cache_id: {cache_id}")
         return cache_id
     
-    def _evict_lru(self):
+    def _check_cache_sizes(self):
+        """
+        Checks the global and user caches for size limits.
+        If exceeded, evict the least recently used (LRU) entry.
+        """
+        print(f"EVICTION_CHECK - max cache entries: {self.max_cache_entries}")
+        print(f"    EVICTION_CHECK - global cache size: {len(self.global_cache)}")
+        print(f"    EVICTION_CHECK - user cache size: {len(self.user_caches)}")
+         # Check global cache
+        if len(self.global_cache) > self.max_cache_entries:
+            self._evict_lru(self.global_cache, len(self.global_cache) - self.max_cache_entries)
+        
+        # Check each user cache
+        for user_id, user_cache in self.user_caches.items():
+            if len(user_cache) > self.max_cache_entries:
+                self._evict_lru(user_cache, len(user_cache) - self.max_cache_entries)
+
+    def _evict_lru(self, cache_dict: Dict[str, SemanticCacheEntry], num_to_evict: int):
         """
         Remove the LRU cache entry.
         """
-
-        if not self.cache:
+        if not cache_dict or num_to_evict <= 0:
+            # No entries to evict
             return
         
-        # Find the least recently used entry 
-        oldest_id = None
-        oldest_time = float('inf')
-
-        for cache_id, entry in self.cache.items():
-            if entry.last_accessed < oldest_time:
-                oldest_time = entry.last_accessed
-                oldest_id = cache_id
-
-        if oldest_id:
-            # Remove the oldest entry
-            entry = self.cache.pop(oldest_id)
-            # Remove from mappings
+        entries_to_evict = sorted(cache_dict.items(), key=lambda item: item[1].last_accessed)[:num_to_evict]
+        
+        for cache_id, entry in entries_to_evict:
+            del cache_dict[cache_id]
             if entry.req_id in self.rid_cid:
                 del self.rid_cid[entry.req_id]
             
-            # Update cache statistics
-            self.stats["cache_entries"] = len(self.cache)
-
-            print(f"Evicted LRU cache entry: {oldest_id}, prompt: {entry.prompt}")
+            print(f"EVICTION - Evicted LRU cache entry: {cache_id}, prompt: {entry.prompt}")
 
 
     def get_stats(self) -> Dict[str, Any]:
@@ -285,8 +417,6 @@ class SemanticCacheManager:
             Dict[str, Any]: Dictionary containing cache statistics.
         """
         stats = self.stats.copy()
-        total = stats["total_requests"]
-        stats["hit_rate"] = stats["semantic_hits"] / total if total > 0 else 0
         return stats
     
 
@@ -294,7 +424,7 @@ class SemanticCacheManager:
         """
         Clear the entire cache.
         """
-        self.cache.clear()
+        self.global_cache.clear()
         self.rid_cid.clear()
         self.no_cache_rids.clear()
         self.stats["cache_entries"] = 0
@@ -325,7 +455,7 @@ class SemanticTGIRouter:
 
         self.active_requests = {}
 
-        print(f"Initialized SemanticTGIRouter with embedding model {embedding_model} and similarity threshold {similarity_threshold}")
+        print(f"PROXY_INIT_ROUTER - SemanticTGIRouter with embedding model {embedding_model} and similarity threshold {similarity_threshold}")
 
     async def route_request(self, request, next_router):
         """
@@ -341,67 +471,100 @@ class SemanticTGIRouter:
         prompt = request.inputs
         req_id = request.id or str(uuid.uuid4())
 
-        # check for semantic cache hit
-        cache_hit, cache_id, similarity, prefix_pos = self.cache_manager.on_req_start(prompt, req_id)
+        # Get request parameters
+        user_id = getattr(request, "user_id", None)
+        cache_strategy = getattr(request, "cache_strategy", "global_user")
+        print(f"-------------------------------------------------------------------------------------------------------------------------------------------")
+        print(f"PARAM:REQUEST_ID - request_id: {req_id}")
+        print(f"PARAM:REQUEST_PROMPT - request_prompt: {prompt}")
+        print(f"PARAM:USER_ID - user_id: {user_id}")
+        print(f"PARAM:REQUEST_CACHE_STRATEGY - request_cache_strategy: {cache_strategy}")
 
-        if cache_hit and cache_id:
+        # check for semantic cache hit
+        cache_hit, cache_id, similarity, prefix_pos, source, cached_response = self.cache_manager.on_req_start(prompt, req_id, user_id, cache_strategy)
+
+        if cache_hit and cache_id and cached_response:
             # Reuse the KV cache state by setting `past+_key_values` in the request
 
-            cache_entry = self.cache_manager.cache[cache_id]
+            if source == "global":
+                entry = self.cache_manager.global_cache[cache_id]
+            else:  # source == 'user'
+                entry = self.cache_manager.user_caches[user_id][cache_id]
 
-            # Track request
 
             self.active_requests[req_id] = {
                 "using_cache": True,
                 "cache_id": cache_id,
                 "original_prompt": prompt,
-                "similarity": similarity,
+                "source": source,
+                "similarity": float(similarity),
                 "prefix_pos": prefix_pos
             }
 
-            # Modify the request to use the cached KV states
-            request.past_key_values = cache_entry.req_id
-            request.past_key_values_length = prefix_pos
+            """# Modify the request to use the cached KV states
+            request.past_key_values = entry.req_id
+            request.past_key_values_length = prefix_pos"""
 
-            print(f"Cache hit for request {req_id}, using cache ID {cache_id} with similarity {similarity}")
+            # Pseduo TGI Response
+            class CachedResponse:
+                def __init__(self, generated_text):
+                    self.generated_text = generated_text
+                    self.details = {"cached": True, "similarity": float(similarity), "source": source}
+
+            response = CachedResponse(cached_response)
+
+            print(f"ROUTER - Cache HIT for request {req_id} \n\
+                        Prompt:{prompt} \n\
+                        Cache_ID {cache_id} \n\
+                        Similarity {similarity} \n\
+                        Source {source}.")
 
         else:
+            print(f"ROUTER - Cache MISS for request {req_id} \n\
+                        Prompt:{prompt} \n\
+                        Cache_ID {cache_id} \n\
+                        Similarity {similarity} \n\
+                        Source {source}.")
+            print("ROUTER - Forwarding to TGI")
 
             self.active_requests[req_id] = {
                 "using_cache": False,
                 "cache_id": None,
                 "original_prompt": prompt,
-                "similarity": similarity,
+                "source": "none",
+                "similarity": float(similarity) if similarity else 0.0,
                 "prefix_pos": 0
             }
 
-        # Forward to next router
+            print(f"ROUTER - Active requests: {self.active_requests}")
+            # Forward to next router
 
-        response = await next_router.route_request(request)
+            response = await next_router.route_request(request)
+            # TODO - Update for TGI using attention re-use
+            # Update cache when request completes if it is cachable (did not use cached states)
+            if req_id in self.active_requests and not self.active_requests[req_id].get("using_cache", False):
+                print(f"ROUTER - Request {req_id} completed, storing cache entry.")
+                # extract prefix position from the response
+                tokens = tokenizer.encode(prompt)
+                prefix_pos = len(tokens)
+                
+                print(f"    Token IDs: {tokens}")
+                decoded_tokens = [tokenizer.decode([token_id]) for token_id in tokens]
+                print(f"    Decoded tokens: {decoded_tokens}")
+                
+                print(f"    Calculated prefix_pos: {prefix_pos} tokens for prompt: {prompt}")
 
-        # Update cache when request completes if it is cachable (did not use cached states)
-        if req_id in self.active_requests and not self.active_requests[req_id].get("using_cache", False):
-            
-            # extract prefix position from the response
-            tokens = tokenizer.encode(prompt)
-            prefix_pos = len(tokens)
-            
-            print(f"Token IDs: {tokens}")
-            decoded_tokens = [tokenizer.decode([token_id]) for token_id in tokens]
-            print(f"Decoded tokens: {decoded_tokens}")
-            
-            print(f"Calculated prefix_pos: {prefix_pos} tokens for prompt: {prompt}")
-
-            # store in semantic cache
-            self.cache_manager.on_req_end(prompt, req_id, prefix_pos)
-            print(f"Stored cache entry for request {req_id} with prompt: {prompt}")
+                # store in semantic cache
+                self.cache_manager.on_req_end(prompt, req_id, prefix_pos, response.generated_text, user_id, cache_strategy)
+                print(f"    Stored cache entry for request {req_id} with prompt: {prompt}")
 
         
         # Clean up the active requests
         if req_id in self.active_requests:
             del self.active_requests[req_id]
-            print(f"Cleaned up request {req_id} from active requests.")
+            print(f"CLEANED - Cleaned up request {req_id} from active requests.")
 
+        print(f"DONE -------------------------------------------------------------------------------------------------------------------------------------------")
         return response
     
     def get_cache_stats(self) -> Dict[str, Any]:
@@ -411,6 +574,7 @@ class SemanticTGIRouter:
         self.cache_manager.clear_cache()
 
 
+"""
 # EXAMPLE #TODO DELETE
 # Example of implementation with TGI
 
@@ -419,7 +583,7 @@ class SemanticTGIRouter:
 from text_generation import Client, AsyncClient
 
 def setup_semantic_tgi_server(model_name, port=8080, host="104.171.202.139"):
-    """Setup connection to TGI server with semantic caching router"""
+     connection to TGI server with semantic caching router
     import time
     
     # Create and return client - connecting to your Lambda instance
@@ -437,7 +601,7 @@ def main():
     
     print("Connecting to TGI server...")
     port = 8080
-    host = "104.171.202.139"  # Your Lambda instance IP
+    host = "150.136.219.27" 
 
     # Connect to existing server
     client, _ = setup_semantic_tgi_server("TinyLlama/TinyLlama-1.1B-Chat-v1.0", port=port, host=host)
@@ -456,9 +620,9 @@ def main():
             result = client.generate(prompt, max_new_tokens=500)
 
              # Debug the raw result
-            """print(f"Raw result type: {type(result)}")
+            print(f"Raw result type: {type(result)}")
             print(f"Raw result attributes: {dir(result)}")
-            print(f"Raw result dict: {result.__dict__ if hasattr(result, '__dict__') else 'No __dict__'}")"""
+            print(f"Raw result dict: {result.__dict__ if hasattr(result, '__dict__') else 'No __dict__'}")
 
             print(f"Output: {result.generated_text[:100]}...")
 
@@ -478,3 +642,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+"""
