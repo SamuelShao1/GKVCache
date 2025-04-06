@@ -1,23 +1,32 @@
 services:
   tgi-server:
-    build:
-      context: ./tgi_server
-    image: tgi-server
+    image: ghcr.io/huggingface/text-generation-inference:2.0.3
     container_name: tgi-server
     ports:
       - "8080:80"
     shm_size: "1g"
     runtime: nvidia
+
+    volumes:
+      - "${PWD}/data:/data"
+
     environment:
-      - HF_MODEL_ID=TinyLlama/TinyLlama-1.1B-Chat-v1.0
+      - HUGGING_FACE_HUB_TOKEN=${HUGGING_FACE_HUB_TOKEN}
       - NVIDIA_VISIBLE_DEVICES=all
       - NVIDIA_DRIVER_CAPABILITIES=compute,utility
-    deploy:  
+
+    command: >
+      --model-id mistralai/Mistral-7B-Instruct-v0.1
+      --trust-remote-code
+
+    deploy:
       resources:
         reservations:
           devices:
             - driver: nvidia
               capabilities: [gpu]
+
+
 
   semantic-proxy:
     build:
@@ -28,3 +37,6 @@ services:
       - "9000:9000"
     depends_on:
       - tgi-server
+    environment:
+      - MODEL_ID=mistralai/Mistral-7B-Instruct-v0.1
+      - HUGGING_FACE_HUB_TOKEN=${HUGGING_FACE_HUB_TOKEN}
