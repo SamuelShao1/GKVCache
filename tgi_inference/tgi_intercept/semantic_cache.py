@@ -24,6 +24,8 @@ print(f"MODEL_NAME: {model_name}")
 print(f"TOKEN: {token}")
 tokenizer = AutoTokenizer.from_pretrained(model_name, token=token, trust_remote_code=True, use_fast=True, add_prefix_space=True)
 
+# Data Collection
+from data_collection.data_collector import DataCollector
 
 
 EMBEDDINGG_MODEL = 'all-MiniLM-L6-v2'
@@ -436,7 +438,11 @@ class SemanticTGIRouter:
     Integraes with existing TGI framework to reuse similar KV cache entries.
     """
 
-    def __init__(self, embedding_model: str = EMBEDDINGG_MODEL, similarity_threshold: float = SIMILARITY_THRESHOLD, max_cache_entries: int = 1000):
+    def __init__(self, 
+                 embedding_model: str = EMBEDDINGG_MODEL, 
+                 similarity_threshold: float = SIMILARITY_THRESHOLD, 
+                 max_cache_entries: int = 1000,
+                 collect_data: bool = False):
         """
         Initialize the SemanticTGIRouter.
 
@@ -455,7 +461,14 @@ class SemanticTGIRouter:
 
         self.active_requests = {}
 
+        # Initialize benchmarking
+        self.collect_data = collect_data
+        if collect_data:
+            self.data_collection = DataCollector()
+
         print(f"PROXY_INIT_ROUTER - SemanticTGIRouter with embedding model {embedding_model} and similarity threshold {similarity_threshold}")
+        if collect_data:
+            print(f"ROUTER - Data collection enabled.")
 
     async def route_request(self, request, next_router):
         """
@@ -467,6 +480,12 @@ class SemanticTGIRouter:
             request (_type_): _description_
             next_router (_type_): _description_
         """
+        # For data collection
+        request_start_time = time.time()
+        embedding_start_time = None
+        embedding_end_time = None
+        similarity_search_start_time = None
+        similarity_search_end_time = None
 
         prompt = request.inputs
         req_id = request.id or str(uuid.uuid4())
@@ -480,8 +499,21 @@ class SemanticTGIRouter:
         print(f"PARAM:USER_ID - user_id: {user_id}")
         print(f"PARAM:REQUEST_CACHE_STRATEGY - request_cache_strategy: {cache_strategy}")
 
+
+        # Embedding time data collection
+        if self.collect_data and self.data_collection.is_active:
+            embedding_start_time = time.time()
+
+        if self.collect_data and self.data_collection.is_active:
+            embedding_end_time = time.time()
+            similarity_search_start_time = time.time()
+
+
         # check for semantic cache hit
         cache_hit, cache_id, similarity, prefix_pos, source, cached_response = self.cache_manager.on_req_start(prompt, req_id, user_id, cache_strategy)
+        
+        if self.collect_data and self.data_collection.is_active:
+            similarity_search_end_time = time.time()
 
         if cache_hit and cache_id and cached_response:
             # Reuse the KV cache state by setting `past+_key_values` in the request
@@ -557,7 +589,31 @@ class SemanticTGIRouter:
                 # store in semantic cache
                 self.cache_manager.on_req_end(prompt, req_id, prefix_pos, response.generated_text, user_id, cache_strategy)
                 print(f"    Stored cache entry for request {req_id} with prompt: {prompt}")
-
+        
+        # End timing  request
+        request_end_time = time.time()
+        
+        # Record data if enabled
+        if self.collect_data and self.data_collection.is_active:
+            # Get the response length
+            response_length = len(response.generated_text) if hasattr(response, "generated_text") else 0
+            
+            self.data_collection.record_query(
+                request_id=req_id,
+                prompt=prompt,
+                user_id=user_id,
+                cache_strategy=cache_strategy,
+                cache_hit=cache_hit,
+                cache_source=source if cache_hit else None,
+                similarity_score=similarity if cache_hit else None,
+                start_time=request_start_time,
+                end_time=request_end_time,
+                embedding_start_time=embedding_start_time,
+                embedding_end_time=embedding_end_time,
+                similarity_search_start_time=similarity_search_start_time,
+                similarity_search_end_time=similarity_search_end_time,
+                response_length=response_length
+            )
         
         # Clean up the active requests
         if req_id in self.active_requests:
@@ -566,7 +622,20 @@ class SemanticTGIRouter:
 
         print(f"DONE -------------------------------------------------------------------------------------------------------------------------------------------")
         return response
+    def start_benchmark(self):
+        if not self.collect_data:
+            self.collect_data = True
+            self.data_collection = DataCollector()
+            
+        return self.data_collection.start_tracking()
     
+    def stop_benchmark(self):
+        if not self.collect_data:
+            return {"error": "Benchmarking is not enabled"}
+            
+        return self.data_collection.stop_tracking()
+    
+
     def get_cache_stats(self) -> Dict[str, Any]:
         return self.cache_manager.get_stats()
     
