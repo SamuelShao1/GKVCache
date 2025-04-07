@@ -37,6 +37,8 @@ services:
       - "9000:9000"
     depends_on:
       - tgi-server
+    volumes:
+      - ./tgi_stats:/app/statistics
     environment:
       - MODEL_ID=mistralai/Mistral-7B-Instruct-v0.1
       - HUGGING_FACE_HUB_TOKEN=${HUGGING_FACE_HUB_TOKEN}

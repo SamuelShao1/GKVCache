@@ -1,3 +1,5 @@
+import os
+from fastapi.responses import FileResponse
 import uvicorn
 from fastapi import FastAPI, Request
 from pydantic import BaseModel
@@ -6,6 +8,7 @@ from text_generation import Client
 
 from semantic_cache import SemanticTGIRouter
 
+from data_collection.data_collector import DataCollector
 app = FastAPI()
 tgi_client = Client("http://tgi-server:80")
 router = SemanticTGIRouter()
@@ -15,6 +18,10 @@ class GenerationRequest(BaseModel):
     parameters: dict = {}
     user_id: str = None
     cache_strategy: str = "global_user"
+
+class DataCollectionRequest(BaseModel):
+    output_dir: str = "./statistics"
+
 
 @app.post("/generate")
 async def generate(request: GenerationRequest):
@@ -78,3 +85,65 @@ async def generate(request: GenerationRequest):
         result["source"] = source
     
     return result
+
+@app.post("/data/start")
+async def start_benchmark(request: DataCollectionRequest = None):
+    if request is None:
+        request = DataCollectionRequest()
+        
+    result = router.start_benchmark()
+    return result
+
+
+@app.post("/data/stop")
+async def stop_benchmark():
+    result = router.stop_benchmark()
+    return result
+
+@app.get("/data/csv")
+async def get_benchmark_csv():
+    """
+    Retrieve the current benchmark CSV file.
+    """
+    if not router.collect_data or not hasattr(router, 'data_collection'):
+        return {"error": "Colleciton is not enabled"}
+    
+    try:
+        csv_file = router.data_collection.csv_file
+        
+        if not os.path.exists(csv_file):
+            return {"error": "CSV file not found", "details": f"File {csv_file} does not exist"}
+        
+        return FileResponse(
+            path=csv_file, 
+            filename=os.path.basename(csv_file),
+            media_type="text/csv"
+        )
+    except Exception as e:
+        return {"error": str(e)}
+
+@app.get("/data/files/{filename}")
+async def get_benchmark_file(filename: str):
+    """
+    Download a specific benchmark file by name.
+    """
+
+    if not router.collect_data:
+        return {"error": "Benchmarking is not enabled"}
+    
+    try:
+        output_dir = router.data_collection.output_dir
+        file_path = os.path.join(output_dir, filename)
+        
+        if not os.path.exists(file_path):
+            return {"error": f"File {filename} not found"}
+        
+        media_type = "text/csv" if filename.endswith('.csv') else "application/json"
+        
+        return FileResponse(
+            path=file_path,
+            filename=filename,
+            media_type=media_type
+        )
+    except Exception as e:
+        return {"error": str(e)}
