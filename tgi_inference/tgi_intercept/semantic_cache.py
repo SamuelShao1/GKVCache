@@ -662,7 +662,7 @@ def setup_semantic_tgi_server(model_name, port=8080, host="104.171.202.139"):
     return client, None
 
 
-# Example usage
+
 def main():
     print("Diagnostic Script - Check TGI Active -------------------------------------------------------------------------------------------------------------------------------------------------")
     diagnostic.diagnostic()

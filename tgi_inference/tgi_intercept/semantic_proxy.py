@@ -63,7 +63,6 @@ async def generate(request: GenerationRequest):
         return tgi_client.generate(r.inputs, **gen_args)
 
     response = await router.route_request(req_obj, type("Forwarder", (), {"route_request": forward}))
-
     cached = False
     similarity = None
     source = None

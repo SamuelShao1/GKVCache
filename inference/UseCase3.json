@@ -1,0 +1,318 @@
+[
+  {
+    "question": "What is big data?",
+    "answer": "Large volumes of varied data"
+  },
+  {
+    "question": "Name one big data framework.",
+    "answer": "Hadoop"
+  },
+  {
+    "question": "What is Hadoop used for?",
+    "answer": "Processing big data"
+  },
+  {
+    "question": "What is data volume?",
+    "answer": "Amount of data"
+  },
+  {
+    "question": "What is data velocity?",
+    "answer": "Speed of data generation"
+  },
+  {
+    "question": "What is data variety?",
+    "answer": "Different data types"
+  },
+  {
+    "question": "What is structured data?",
+    "answer": "Organized data format"
+  },
+  {
+    "question": "What is unstructured data?",
+    "answer": "Unorganized data format"
+  },
+  {
+    "question": "What is MapReduce?",
+    "answer": "Big data processing model"
+  },
+  {
+    "question": "What is a data lake?",
+    "answer": "Storage for raw data"
+  },
+  {
+    "question": "What is a data warehouse?",
+    "answer": "Storage for structured data"
+  },
+  {
+    "question": "What is Spark used for?",
+    "answer": "Fast big data processing"
+  },
+  {
+    "question": "What is a data node?",
+    "answer": "Stores data in Hadoop"
+  },
+  {
+    "question": "What is a NameNode?",
+    "answer": "Manages file system in Hadoop"
+  },
+  {
+    "question": "What is a cluster?",
+    "answer": "Group of connected computers"
+  },
+  {
+    "question": "What is HDFS?",
+    "answer": "Hadoop Distributed File System"
+  },
+  {
+    "question": "What is data ingestion?",
+    "answer": "Bringing data into system"
+  },
+  {
+    "question": "What is ETL?",
+    "answer": "Extract, Transform, Load"
+  },
+  {
+    "question": "What is a data pipeline?",
+    "answer": "Automated data workflow"
+  },
+  {
+    "question": "What is batch processing?",
+    "answer": "Processing large data blocks"
+  },
+  {
+    "question": "What is a blockchain?",
+    "answer": "Distributed digital ledger"
+  },
+  {
+    "question": "What is a block?",
+    "answer": "Record in blockchain"
+  },
+  {
+    "question": "What is a hash?",
+    "answer": "Unique data fingerprint"
+  },
+  {
+    "question": "What is mining?",
+    "answer": "Adding new blocks"
+  },
+  {
+    "question": "What is Bitcoin?",
+    "answer": "Digital cryptocurrency"
+  },
+  {
+    "question": "What is Ethereum?",
+    "answer": "Blockchain for smart contracts"
+  },
+  {
+    "question": "What is a smart contract?",
+    "answer": "Self-executing code"
+  },
+  {
+    "question": "What is a public blockchain?",
+    "answer": "Open to all"
+  },
+  {
+    "question": "What is a private blockchain?",
+    "answer": "Restricted access"
+  },
+  {
+    "question": "What is decentralization?",
+    "answer": "No central control"
+  },
+  {
+    "question": "What is a P2P network?",
+    "answer": "Peer-to-peer system"
+  },
+  {
+    "question": "What is a ledger?",
+    "answer": "Record of transactions"
+  },
+  {
+    "question": "What is a node?",
+    "answer": "Device in blockchain network"
+  },
+  {
+    "question": "What is consensus?",
+    "answer": "Agreement on blockchain state"
+  },
+  {
+    "question": "What is proof of work?",
+    "answer": "Consensus using computation"
+  },
+  {
+    "question": "What is proof of stake?",
+    "answer": "Consensus using ownership"
+  },
+  {
+    "question": "What is a crypto wallet?",
+    "answer": "Stores digital currency"
+  },
+  {
+    "question": "What is a token?",
+    "answer": "Digital unit on blockchain"
+  },
+  {
+    "question": "What is a fork?",
+    "answer": "Change in blockchain protocol"
+  },
+  {
+    "question": "What is gas in Ethereum?",
+    "answer": "Transaction fee"
+  },
+  {
+    "question": "What does LLM stand for?",
+    "answer": "Large Language Model"
+  },
+  {
+    "question": "What is a prompt?",
+    "answer": "Input to a language model"
+  },
+  {
+    "question": "What is a response?",
+    "answer": "Model's output text"
+  },
+  {
+    "question": "What is a token?",
+    "answer": "Unit of text"
+  },
+  {
+    "question": "What is GPT?",
+    "answer": "Generative Pretrained Transformer"
+  },
+  {
+    "question": "What is fine-tuning?",
+    "answer": "Customizing a model"
+  },
+  {
+    "question": "What is pretraining?",
+    "answer": "Training on large data"
+  },
+  {
+    "question": "What is a transformer model?",
+    "answer": "Model using attention"
+  },
+  {
+    "question": "What is self-attention?",
+    "answer": "Focus on input parts"
+  },
+  {
+    "question": "What is inference?",
+    "answer": "Generating model output"
+  },
+  {
+    "question": "What is temperature?",
+    "answer": "Controls randomness"
+  },
+  {
+    "question": "What is a language model used for?",
+    "answer": "Understanding and generating text"
+  },
+  {
+    "question": "What is text generation?",
+    "answer": "Creating text output"
+  },
+  {
+    "question": "What is an embedding?",
+    "answer": "Numerical word representation"
+  },
+  {
+    "question": "What is context length?",
+    "answer": "Max input size"
+  },
+  {
+    "question": "What is zero-shot learning?",
+    "answer": "Answering without examples"
+  },
+  {
+    "question": "What is few-shot learning?",
+    "answer": "Answering with few examples"
+  },
+  {
+    "question": "What is chain-of-thought?",
+    "answer": "Step-by-step reasoning"
+  },
+  {
+    "question": "What is model hallucination?",
+    "answer": "Incorrect model output"
+  },
+  {
+    "question": "What is prompt engineering?",
+    "answer": "Designing effective inputs"
+  },
+  {
+    "question": "What is data streaming?",
+    "answer": "Real-time data processing"
+  },
+  {
+    "question": "What is an example of structured data?",
+    "answer": "Relational database"
+  },
+  {
+    "question": "What is big data analytics?",
+    "answer": "Analyzing large datasets"
+  },
+  {
+    "question": "What is big data storage?",
+    "answer": "Storing large volumes of data"
+  },
+  {
+    "question": "What is blockchain consensus?",
+    "answer": "Agreement on transaction validity"
+  },
+  {
+    "question": "What is the purpose of a cryptocurrency wallet?",
+    "answer": "Store and send digital currencies"
+  },
+  {
+    "question": "What is a blockchain miner?",
+    "answer": "Validates transactions and adds blocks"
+  },
+  {
+    "question": "What is a digital signature in blockchain?",
+    "answer": "Proves ownership of data"
+  },
+  {
+    "question": "What is Ethereum gas used for?",
+    "answer": "Pay transaction fees"
+  },
+  {
+    "question": "What is a smart contract?",
+    "answer": "Automated agreement on blockchain"
+  },
+  {
+    "question": "What is Ethereum's main use?",
+    "answer": "Decentralized applications"
+  },
+  {
+    "question": "What is blockchain decentralization?",
+    "answer": "No single point of control"
+  },
+  {
+    "question": "What does a blockchain node do?",
+    "answer": "Validates and stores data"
+  },
+  {
+    "question": "What is an Ethereum smart contract?",
+    "answer": "Self-executing digital agreement"
+  },
+  {
+    "question": "What is blockchain scalability?",
+    "answer": "Ability to handle growing transactions"
+  },
+  {
+    "question": "What is blockchain immutability?",
+    "answer": "Once written, data cannot be changed"
+  },
+  {
+    "question": "What is the main advantage of using a blockchain?",
+    "answer": "Security and transparency"
+  },
+  {
+    "question": "What is a hash function?",
+    "answer": "Converts data into a fixed-size output"
+  },
+  {
+    "question": "What is a peer-to-peer network?",
+    "answer": "Network where each node is equal"
+  }
+]
