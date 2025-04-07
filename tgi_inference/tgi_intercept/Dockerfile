@@ -8,9 +8,9 @@ WORKDIR /app
 
 COPY . /app
 
-RUN pip install --no-cache-dir --upgrade pip && \
-    pip install --no-cache-dir -r requirements.txt && \
-    pip install --no-cache-dir "uvicorn[standard]"
+RUN pip install --upgrade pip && \
+    pip install -r requirements.txt && \
+    pip install "uvicorn[standard]"
 # Fastapi port
 EXPOSE 9000
 
