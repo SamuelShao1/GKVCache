@@ -99,6 +99,11 @@ async def stop_benchmark():
     result = router.stop_benchmark()
     return result
 
+@app.post("/clear")
+async def clear():
+    router.clear_cache()
+    return "Cleared Cache"
+
 @app.get("/data/csv")
 async def get_benchmark_csv():
     """

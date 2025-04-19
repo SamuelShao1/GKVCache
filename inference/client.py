@@ -23,50 +23,32 @@ class LLMClient:
         self.generate_url = f"{server_url}/generate"
 
     async def query(self, prompt: str, parameters: Optional[Dict[str, Any]] = None) -> Tuple[str, Optional[str]]:
-        """
-        Sends a prompt to the server's /generate endpoint.
-
-        Args:
-            prompt: The input text prompt.
-            parameters: Optional generation parameters.
-
-        Returns:
-            A tuple containing:
-            - The original prompt.
-            - The generated text as a string, or None if an error occurred.
-        """
         payload = {
             "inputs": prompt,
-            "parameters": parameters or {}
+            "parameters": parameters or {},
+            "user_id": f"user_{self.client_id}",
+            "cache_strategy": "per_user"
         }
-        request_start_time = time.monotonic()
         print(f"Client {self.client_id}: Sending prompt: '{prompt[:50]}...'")
         try:
-            # Add a client identifier header (optional, useful for server-side logging/routing)
             headers = {"X-Client-ID": str(self.client_id)}
-            response = await self._client.post(self.generate_url, json=payload, headers=headers, timeout=30.0) # Increased timeout
-            response.raise_for_status()  
+            response = await self._client.post(self.generate_url, json=payload, headers=headers)
+            response.raise_for_status()
 
             response_data = response.json()
             generated_text = response_data.get("generated_text")
-            elapsed = time.monotonic() - request_start_time
             print(f"Client {self.client_id}: Received response for '{prompt[:50]}...' in {elapsed:.2f}s. Result: '{str(generated_text)[:50]}...'")
             return prompt, generated_text
-
-        except httpx.RequestError as e:
-            elapsed = time.monotonic() - request_start_time
-            print(f"Client {self.client_id}: Request failed for '{prompt[:50]}...' after {elapsed:.2f}s: {e}")
-            return prompt, None
         except Exception as e:
-            elapsed = time.monotonic() - request_start_time
-            print(f"Client {self.client_id}: An unexpected error occurred for '{prompt[:50]}...' after {elapsed:.2f}s: {e}")
+            print(f"Client {self.client_id}: Request failed for '{prompt[:50]}...'")
             return prompt, None
+
 
 # --- LLM Client Manager ---
 class LLMClientManager:
     """Manages multiple LLMClient instances and orchestrates queries."""
 
-    def __init__(self, server_url: str, num_clients: int, case: int = 3):
+    def __init__(self, server_url: str, num_clients: int, file:str ="class.json"):
         """
         Initializes the Client Manager.
 
@@ -77,28 +59,34 @@ class LLMClientManager:
         """
         self.server_url = server_url
         self.num_clients = num_clients
-        self.prompts = distribute_prompts(f"UseCase{case}.json", num_clients)
+        self.prompts = distribute_prompts(file, num_clients)
         self.clients: List[LLMClient] = []
         self.results: Dict[int, List[Tuple[str, Optional[str]]]] = {}
 
     async def run_queries(self):
         """
-        Creates clients and runs all queries asynchronously.
+        Creates clients and runs all queries asynchronously, with start and stop data collection.
         """
         start_time = time.monotonic()
         print(f"Starting simulation with {self.num_clients} clients and {len(self.prompts)} prompts each.")
+
         async with httpx.AsyncClient() as http_client:
+            # Start data collection
+            try:
+                print("Client Manager: Starting data collection...")
+                response = await http_client.post(f"{self.server_url}/data/start", json={"output_dir": "./statistics"})
+                print(f"Client Manager: Data collection start response: {response.status_code}, {response.json()}")
+            except Exception as e:
+                print(f"Client Manager: Failed to start data collection: {e}")
 
             self.clients = [LLMClient(i, self.server_url, http_client) for i in range(self.num_clients)]
-            self.results = {client.client_id: [] for client in self.clients} # Initialize results dict
-
+            self.results = {client.client_id: [] for client in self.clients}
 
             tasks = []
             for c in range(self.num_clients):
                 for prompt in self.prompts[c]:
                     async def query(c: LLMClient, p: str):
                         return c.client_id, await c.query(p)
-
                     tasks.append(asyncio.create_task(query(self.clients[c], prompt)))
 
             print(f"Dispatching {len(tasks)} tasks...")
@@ -111,8 +99,18 @@ class LLMClientManager:
                     client_id, (prompt, response_text) = result
                     if client_id in self.results:
                          self.results[client_id].append((prompt, response_text))
-                    
+
+            try:
+                print("Client Manager: Stopping data collection...")
+                response = await http_client.post(f"{self.server_url}/data/stop")
+                print(f"Client Manager: Data collection stop response: {response.status_code}, {response.json()}")
+                response = await http_client.post(f"{self.server_url}/clear")
+                print("CLEARING CACHE.")
+            except Exception as e:
+                print(f"Client Manager: Failed to stop data collection: {e}")
+
         self.report_results()
+
 
 
 
@@ -138,7 +136,7 @@ class LLMClientManager:
 # --- Main execution for client simulation ---
 if __name__ == "__main__":
     SERVER_ADDRESS = "http://localhost:9000"
-    NUM_CLIENTS = 5
+    NUM_CLIENTS = 8
 
     print("--- LLM Client Simulation ---")
     print(f"Target Server: {SERVER_ADDRESS}")
@@ -147,6 +145,7 @@ if __name__ == "__main__":
     manager = LLMClientManager(
         server_url=SERVER_ADDRESS,
         num_clients=NUM_CLIENTS,
+        file="class.json"
     )
 
     # Run the simulation using asyncio

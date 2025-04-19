@@ -429,6 +429,8 @@ class SemanticCacheManager:
         self.global_cache.clear()
         self.rid_cid.clear()
         self.no_cache_rids.clear()
+        self.user_caches.clear()
+        self.stats["user_cache_entries"] = 0
         self.stats["cache_entries"] = 0
         print("Cleared all cache entries.")
 
