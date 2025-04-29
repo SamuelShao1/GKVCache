@@ -80,3 +80,51 @@ curl -X POST http://localhost:9000/generate \
   }'
 ```
 
+## Running the System
+* The entire application is dockerized in order to make this process much simplier.
+* There are hardware requirements in order for the application to run in a timely matter due to the high resource usage of inference. The model we use is Mistral-7B-Instruct-v0.1 (https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.1) which recommends the following GPU.
+   * Nvidia A100 40GB
+ * However, during the completion of our project we utilized Lambda Labs cloud GPU instances. Typically we used either Nvidia A100 40GB or Nvidia A10 24GB depending on avaliability.
+*  In addition, this tutorial assumes an Ubuntu-based environment.
+### Step 1: Configure the Nvidia Runtime
+Start by setting up the docker environment, as well as ensuring docker uses the Nvidia runtime toolkit. 
+First install the nvidia container toolkit:
+```
+sudo apt-get update
+sudo apt-get install -y nvidia-container-toolkit
+```
+Next, configure docker to use the nvidia runtime and restart docker.
+```
+sudo nvidia-ctk runtime configure --runtime=docker
+sudo systemctl restart docker
+```
+Test that the configuration has been correctly applied by running the following, which should display your GPU information.
+```
+sudo docker run --rm --gpus all nvidia/cuda:12.4.0-base-ubuntu22.04 nvidia-smi
+```
+### Step 2: Start the Docker Environment
+First build the docker compose and images (this can take a very long time, so please be patient).
+```
+sudo docker compose build
+```
+This should build two container images for the semantic-proxy as well as the tgi_server. 
+Start both containers, and include your HF token for access. 
+```
+sudo HUGGING_FACE_HUB_TOKEN=hf_XXXX docker compose up               
+```
+The services should now be running. In order to make a query, you can use a curl request to the API endpoint at `localhost:9000` or you can use the provided client-side sample code as well
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
