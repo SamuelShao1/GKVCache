@@ -1,56 +1,46 @@
 services:
-  api:
-    build: ./api
+  tgi-server:
+    build: 
+      context: ./tgi-gkv-server/text-generation-inference
+      dockerfile: Dockerfile
+    container_name: tgi-server
     ports:
-      - "8000:8000"
-    environment:
-      - INFERENCE_URL=http://inference:8001
-    depends_on:
-      - inference
-    networks:
-      - frontend-network
-      - backend-network
+      - "8080:80"
+    shm_size: "1g"
+    runtime: nvidia
     volumes:
-      - ./api:/app
-
-  inference:
-    image: ghcr.io/huggingface/text-generation-inference:latest
-    command: --model-id sshleifer/tiny-gpt2
-    ports:
-      - "8001:80"
+      - "${PWD}/data:/data"
+      - ${PWD}/tgi-gkv-server/cache/kv_cache.py:/opt/conda/lib/python3.11/site-packages/text_generation_server/cache/kv_cache.py
+      - ${PWD}/tgi-gkv-server/cache/__init__.py:/opt/conda/lib/python3.11/site-packages/text_generation_server/cache/__init__.py
+      - ${PWD}/tgi-gkv-server/models/model.py:/opt/conda/lib/python3.11/site-packages/text_generation_server/models/model.py
+      - ${PWD}/tgi-gkv-server/models/causal_lm.py:/opt/conda/lib/python3.11/site-packages/text_generation_server/models/causal_lm.py
+      - ${PWD}/tgi-gkv-server/server.py:/opt/conda/lib/python3.11/site-packages/text_generation_server/server.py
     environment:
-      - HF_HUB_ENABLE_HF_TRANSFER=0
-      - CACHE_URL=http://gkv-cache:8003
-    depends_on:
-      - gkv-cache
-    networks:
-      - backend-network
+      - HUGGING_FACE_HUB_TOKEN=${HUGGING_FACE_HUB_TOKEN}
+      - NVIDIA_VISIBLE_DEVICES=all
+      - NVIDIA_DRIVER_CAPABILITIES=compute,utility
+    command: >
+      --model-id mistralai/Mistral-7B-Instruct-v0.1
+      --trust-remote-code
     deploy:
       resources:
-        limits:
-          memory: 16G
+        reservations:
+          devices:
+            - driver: nvidia
+              capabilities: [gpu]
 
-  gkv-cache:
-    build: ./gkv-cache
+  semantic-proxy:
+    build:
+      context: ./semantic-processor/intercept
+    image: semantic-proxy
+    container_name: semantic-proxy
     ports:
-      - "8003:8003"
-    environment:
-      - CACHE_SIZE=8G
+      - "9000:9000"
+    depends_on:
+      - tgi-server
     volumes:
-      - cache-data:/data
-      - ./gkv-cache:/app
-    networks:
-      - backend-network
-    deploy:
-      resources:
-        limits:
-          memory: 12G
-
-networks:
-  frontend-network:
-  backend-network:
-
-volumes:
-  model-data:
-  cache-data:
-  metrics-data:
+      - ./tgi_stats:/app/statistics
+    environment:
+      - MODEL_ID=mistralai/Mistral-7B-Instruct-v0.1
+      - HUGGING_FACE_HUB_TOKEN=${HUGGING_FACE_HUB_TOKEN}
+      - TGI_SERVER_URL=http://tgi-server:80
