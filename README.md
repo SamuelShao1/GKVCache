@@ -46,6 +46,13 @@ Here's a breakdown of the key files in the repository:
 - Defines and manages multi-container Docker applications.
 - Orchestrates the TGI server container and semantic proxy container.
 
+### `tgi_gkv_server`
+- This is a subdirectory containing the modified source code from Hugging Face TGI. The following is an overview of the files that were modfied to support our project.
+- `tgi-gkv-server/text-generation-inference/proto/generate.proto`: Protobuf definitions modified.
+- `tgi-gkv-server/text-generation-inference/server/text_generation_server/models/causal_lm.py`: Added GKV alias operations as well as to pass previous key values based on prefix position. 
+- `tgi-gkv-server/text-generation-inference/server/text_generation_server/models/model.py`: Modified root class model defintion to add GKV alias operations during generation requests.
+- `tgi-gkv-server/text-generation-inference/server/text_generation_server/gkv_cache/gkv_cache.py`: Primary GKV Cache implementation to store key or value and corresponding previosuly computed attention values.
+- Other parts of the source code to pass new parameters/variables as needed.
 ## Running the Semantic Proxy with Docker
 
 Use the dockerfile provided to run the server on a server with NVIDIA GPU, install all necessary drivers as well.
