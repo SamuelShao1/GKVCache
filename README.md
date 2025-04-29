@@ -72,3 +72,4 @@ curl -X POST http://localhost:9000/generate \
     "cache_strategy": "global_only"
   }'
 ```
+
