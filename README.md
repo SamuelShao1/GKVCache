@@ -6,41 +6,69 @@ This README outlines how to use the provided files to run a semantic caching pro
 
 This setup implements a semantic caching layer (`semantic_proxy.py` and `semantic_cache.py`) that sits in front of your TGI server. The goal is to improve generation efficiency by identifying semantically similar past requests and reusing the cached KV (key-value) states. This can lead to faster response times and reduced computational cost for repetitive or similar trivia questions, classification prompts, and other types of queries defined in the datasets.
 
+The **semantic KV cache** implemented here has the capability to be **global and shared between users**. This means that if one user makes a request that gets cached, and a subsequent request from a different user is semantically similar enough (based on the configured threshold and the `cache_strategy`), the cached KV states and generated output can be reused, potentially speeding up response times and reducing computational load across all users of the system.
+
 The system also includes data collection capabilities (`data_collection/data_collector.py`) to benchmark the performance of the semantic cache on these types of datasets.
 
 ## File Descriptions
 
 Here's a breakdown of the key files in the repository:
 
-**`datasets/`:**
-* Contains various JSON and CSV files (e.g., `trivia.json`, `class.json`, `UseCase*.json`, `UseCase*.csv`). These are the datasets used for this use case, containing trivia questions, classification examples, and other types of prompts designed to test and evaluate the semantic caching proxy.
+### `datasets/`
+- Contains various JSON and CSV files (e.g., `trivia.json`, `class.json`, `UseCase*.json`, `UseCase*.csv`). These are the datasets used for this use case, containing trivia questions, classification examples, and other types of prompts designed to test and evaluate the semantic caching proxy.
 
-**`evaluation/`:**
-* `analyze_prompts.py`: This script is used to analyze the prompts within the datasets, possibly to understand their semantic relationships or to prepare them for benchmarking the cache.
+### `evaluation/`
+- `analyze_prompts.py`: Script to analyze the prompts within the datasets, possibly to understand their semantic relationships or to prepare them for benchmarking the cache.
 
-**`gkv-cache/`:**
-* This directory and its contents (`inference/`, `class.json`, `client.py`, `customer.json`, `Dataset_client.py`, `Dockerfile`, `gpt.json`, `legal.json`, `requirements.txt`, `trivia.json`, `writing.json`) are related to a different or older inference setup and are **not directly used** in the semantic proxy setup described here. Note that `class.json` and `trivia.json` here are distinct from the dataset files in the `datasets/` directory.
+### `gkv-cache/`
+- Related to a different or older inference setup and are **not directly used** in the semantic proxy setup described here.
+- Includes files like `inference/`, `class.json`, `client.py`, `customer.json`, `Dataset_client.py`, `Dockerfile`, `gpt.json`, `legal.json`, `requirements.txt`, `trivia.json`, `writing.json`.
 
-**`tgi_inference/`:**
-* `tgi_intercept/`:
-    * `data_collection/`:
-        * `data_collector.py`: This script implements a `DataCollector` class responsible for recording and managing benchmark data related to cache hits, misses, and other relevant metrics when processing the trivia, classification, and other datasets.
-        * `diagnostic.py`: Contains utility functions for debugging or monitoring the semantic cache's performance on the specific use case datasets.
-    * `Dockerfile`: A Dockerfile specifically for building the semantic proxy image, optimized for handling requests related to trivia, classification, and other tasks defined in the datasets.
-    * `requirements.txt`: Lists the Python dependencies required to run the semantic proxy, ensuring compatibility with processing the data from `trivia.json`, `class.json`, etc.
-    * `semantic_cache.py`: This file contains the core logic for the semantic cache. It includes classes for storing cache entries (`SemanticCacheEntry`) and managing the cache (`SemanticCacheManager`). It uses a sentence transformer model to generate embeddings for prompts (trivia questions, classification inputs, etc.) and calculates cosine similarity to find similar past requests from the datasets.
-    * `semantic_proxy.py`: This is the main application file. It uses FastAPI to create an API endpoint (`/generate`) that receives generation requests (likely based on the trivia, classification, and other data). It interacts with the `SemanticCacheManager` to check for cache hits and forwards requests to the TGI server if needed. It also includes endpoints for managing the data collection process for benchmarking the cache's effectiveness on the specific use case.
+### `tgi_inference/`
+- **`tgi_intercept/`:**
+  - `data_collection/`:
+    - `data_collector.py`: Implements a `DataCollector` class responsible for recording and managing benchmark data related to cache hits, misses, and other relevant metrics.
+    - `diagnostic.py`: Utility functions for debugging or monitoring the semantic cache's performance.
+  - `Dockerfile`: Builds the semantic proxy image.
+  - `requirements.txt`: Python dependencies for running the semantic proxy.
+  - `semantic_cache.py`: Core logic for the semantic cache. Includes:
+    - Classes for cache entries (`SemanticCacheEntry`) and cache management (`SemanticCacheManager`).
+    - Sentence transformer model for prompt embeddings and cosine similarity calculations.
+    - Support for global and per-user caches.
+  - `semantic_proxy.py`: Main application file. 
+    - FastAPI server with `/generate` endpoint.
+    - Handles cache checking, request forwarding to the TGI server, and benchmark data collection.
 
-**`tgi_stats/`:**
-* Contains scripts or configurations for monitoring the TGI server itself while it processes requests related to the trivia, classification, and other tasks.
+### `tgi_stats/`
+- Evaluation statistics and analysis.
 
-**`docker-compose.yml`:**
-* This file defines and manages multi-container Docker applications. It will likely be used to orchestrate the TGI server container and the semantic proxy container, optimized for handling the trivia, classification, and other use cases.
+### `docker-compose.yml`
+- Defines and manages multi-container Docker applications.
+- Orchestrates the TGI server container and semantic proxy container.
 
 ## Running the Semantic Proxy with Docker
 
-Follow the instructions in the previous README output to build and run the Docker containers for the semantic proxy and the TGI server. Ensure your `docker-compose.yml` is configured correctly to link the services.
+Use the dockerfile provided to run the server on a server with NVIDIA GPU, install all necessary drivers as well.
 
-## Interacting with the Semantic Proxy
+# Interacting with the Semantic Proxy and Collecting Statistics
+You can use curl to send requests to the semantic proxy and interact with its API. The cache_strategy parameter in your requests ("global_user", "global_only", "per_user", "no_cache") determines how the shared global semantic KV cache is utilized alongside any per-user caches.
 
-Use a client (implemented in `client.py`) to send requests to the semantic proxy's API endpoint (e.g., `http://your_lambda_labs_ip:8000/generate`). Your requests can be based on the data in `trivia.json`, `class.json`, and other datasets to test the caching behavior for these specific use cases. The `user_id` and `cache_strategy` parameters in your requests will control how the semantic cache is utilized for these trivia and classification tasks. You can also use the `/data` endpoints to benchmark the performance of the cache when processing these specific datasets.
+
+```
+echo "--- Starting Benchmark Data Collection ---"
+curl -X POST "${PROXY_URL}/data/start"
+echo -e "\n--- [Benchmark started] ---\n"
+```
+
+To send a generation request that utilize the global cache:
+```
+echo "Query 1: User 1 - Initial TGI Inference"
+curl -X POST http://localhost:9000/generate \
+  -H "Content-Type: application/json" \
+  -d '{
+    "inputs": "What are some quick recipes?",
+    "parameters": { "max_new_tokens": 100 },
+    "user_id": "user1",
+    "cache_strategy": "global_only"
+  }'
+```
