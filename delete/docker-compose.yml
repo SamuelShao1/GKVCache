@@ -1,0 +1,56 @@
+services:
+  api:
+    build: ./api
+    ports:
+      - "8000:8000"
+    environment:
+      - INFERENCE_URL=http://inference:8001
+    depends_on:
+      - inference
+    networks:
+      - frontend-network
+      - backend-network
+    volumes:
+      - ./api:/app
+
+  inference:
+    image: ghcr.io/huggingface/text-generation-inference:latest
+    command: --model-id sshleifer/tiny-gpt2
+    ports:
+      - "8001:80"
+    environment:
+      - HF_HUB_ENABLE_HF_TRANSFER=0
+      - CACHE_URL=http://gkv-cache:8003
+    depends_on:
+      - gkv-cache
+    networks:
+      - backend-network
+    deploy:
+      resources:
+        limits:
+          memory: 16G
+
+  gkv-cache:
+    build: ./gkv-cache
+    ports:
+      - "8003:8003"
+    environment:
+      - CACHE_SIZE=8G
+    volumes:
+      - cache-data:/data
+      - ./gkv-cache:/app
+    networks:
+      - backend-network
+    deploy:
+      resources:
+        limits:
+          memory: 12G
+
+networks:
+  frontend-network:
+  backend-network:
+
+volumes:
+  model-data:
+  cache-data:
+  metrics-data:
